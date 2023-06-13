@@ -106,8 +106,9 @@ Añadir ENS
 https://testnet.starkscan.co/tx/0x7cad34ffe96f98c5678813008c8c2d062a0fef0b32ef87f5b6b7432c207de99
 
 ## Votar 
-
+```bash
 starknet-compile Votar.cairo Votar.json
+```
 
 starknet declare --contract Votar.json --account Nadai
 
@@ -150,13 +151,78 @@ Contract address: 0x0592de11f4e370aba47f0038b77a85343d9a8ace89dc5cc2ac3583ebf820
 Transaction hash: 0x765a730af02c53267b939caff28328881d2f737b2d91d3b388e58988def0f1c
 
 ## ERC20 
-
+```bash
 starknet-compile ERC20.cairo ERC20.json
+```
 
-starknet declare --contract ENS.json --account Nadai
+```bash
+starknet declare --contract ERC20.json --account Nadai
+```
+
+Sending the transaction with max_fee: 0.000001 ETH (1387470794710 WEI).
+Declare transaction was sent.
+Contract class hash: 0x7db653c91959fd5674c1bb5b8a3938b4b14ac9ecdda9da195ac35fe65cae183
+Transaction hash: 0x48b5bb7fa8358c16cc2162fa8441b493f0bc883b146fe199a83fbf3653b6c7d
+
+starknet deploy --class_hash 0x7db653c91959fd5674c1bb5b8a3938b4b14ac9ecdda9da195ac35fe65cae183 --inputs 336641417577 5128521 1000 0 1795950254530259382270168937734171348535331377400385313842303804539016002736 --account Nadai
+
+Sending the transaction with max_fee: 0.000009 ETH (8865223076573 WEI).
+Invoke transaction for contract deployment was sent.
+Contract address: 0x05ecb0d7f6a32fa713c1568186dfb88392126c48332d04327e4cdea8061696d1
+Transaction hash: 0x14081aa8b720286828ff2c9207d726e585e77e6c43af3bbadd90d13ffa3aee2
+
+https://testnet.starkscan.co/contract/0x05ecb0d7f6a32fa713c1568186dfb88392126c48332d04327e4cdea8061696d1#read-write-contract
+
+**Approve** https://testnet.starkscan.co/tx/0xd6ad2a3f22e1f4f6958ae3d5ebe41bd22f8a6dd2dda9c55b6fd7bb6601fd02
+**Transfer** https://testnet.starkscan.co/tx/0x7c2785fbf695e58b67cc488aae8acf877226145866aef9f550efcf35ad794e3
 
 ## ICO 
 
 starknet-compile ICO.cairo ICO.json
 
 starknet declare --contract ENS.json --account Nadai
+
+## Test
+Suma
+```bash
+cairo-test ./tests/suma.cairo
+```
+
+Resta
+```bash
+cairo-test ./tests/resta.cairo
+```
+
+Multiplicación
+```bash
+cairo-test ./tests/multiplicacion.cairo
+```
+
+Operaciones
+```bash
+cairo-test ./tests/operaciones.cairo
+```
+
+Test Individuales
+```bash
+cairo-test ./tests/operaciones.cairo -f resta
+```
+
+Test Ignorados
+```bash
+cairo-test ./tests/operaciones_ignorar.cairo
+```
+
+Saltar Test Ignorados
+```bash
+cairo-test ./tests/operaciones_ignorar.cairo --include-ignored
+```
+
+Test Tupla
+Podremos pasar valores en booleanos o numericos pero necesitan que sea el valor correcto
+```bash
+cairo-test ./tests/tupla.cairo
+```
+
+
+

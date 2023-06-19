@@ -17,15 +17,31 @@ pyenv activate cairo_venv
 
 starknet --version
 cairo-compile --version
-starknet --version
+starknet-compile --version
 
 # Actualizar
 cd .cairo/
-git checkout tags/v1.1.0
+
+git fetch
+
+git checkout tags/v2.0.0-rc2
 cargo build --all --release
+
+# Añadir versión especifica
+cd .cairo/
+
+git fetch
+
+git checkout tags/X
+cargo build --all --release
+
+
+## Actualizar Scarb 0.5.0
+curl --proto '=https' --tlsv1.2 -sSf https://docs.swmansion.com/scarb/install.sh | bash -s -- -v 0.5.0-alpha.0
 
 ## Vs Code
 Una vez actualizado y descargado la extension Cairo 1 en VsCode, ir a la configuración de la extensión y añadimos la ruta del `cairo-language-server` que vayamos a usar, revisar la ruta acorde a vuestro archivo
+
 ```bash
 /home/nadai/.cairo/target/release/cairo-language-server
 ```
@@ -164,7 +180,9 @@ Declare transaction was sent.
 Contract class hash: 0x7db653c91959fd5674c1bb5b8a3938b4b14ac9ecdda9da195ac35fe65cae183
 Transaction hash: 0x48b5bb7fa8358c16cc2162fa8441b493f0bc883b146fe199a83fbf3653b6c7d
 
+```bash
 starknet deploy --class_hash 0x7db653c91959fd5674c1bb5b8a3938b4b14ac9ecdda9da195ac35fe65cae183 --inputs 336641417577 5128521 1000 0 1795950254530259382270168937734171348535331377400385313842303804539016002736 --account Nadai
+```
 
 Sending the transaction with max_fee: 0.000009 ETH (8865223076573 WEI).
 Invoke transaction for contract deployment was sent.
@@ -175,6 +193,29 @@ https://testnet.starkscan.co/contract/0x05ecb0d7f6a32fa713c1568186dfb88392126c48
 
 **Approve** https://testnet.starkscan.co/tx/0xd6ad2a3f22e1f4f6958ae3d5ebe41bd22f8a6dd2dda9c55b6fd7bb6601fd02
 **Transfer** https://testnet.starkscan.co/tx/0x7c2785fbf695e58b67cc488aae8acf877226145866aef9f550efcf35ad794e3
+
+## ERC721
+```bash
+starknet-compile ERC721.cairo ERC721.json
+```
+
+```bash
+starknet declare --contract ERC721.json --account Nadai
+```
+
+Sending the transaction with max_fee: 0.000001 ETH (1487715674268 WEI).
+Declare transaction was sent.
+Contract class hash: 0x6b1dca7fb9e0166e639a08d5521d2ad854fd023a9d4b2bcbc3c79d510b87fe0
+Transaction hash: 0x44d3b2321c8b2bc2c06ff0c11cebb4fad72cc0aba9f7fe603df3ee03658d328
+
+```bash
+starknet deploy --class_hash 0x6b1dca7fb9e0166e639a08d5521d2ad854fd023a9d4b2bcbc3c79d510b87fe0 --inputs 336641417577 5129801 --account Nadai
+```
+
+Sending the transaction with max_fee: 0.000007 ETH (6609894432026 WEI).
+Invoke transaction for contract deployment was sent.
+Contract address: 0x041250c83391e1ba8701c39e8eca759525c4d34f87ccfdf5a4d6c35c5282fa5d
+Transaction hash: 0x6d169a3a0ce233f7b46546dc995bc4d6cdc779a88d768e0e4a4dc2b4e2c94d1
 
 ## ICO 
 
@@ -225,4 +266,7 @@ cairo-test ./tests/tupla.cairo
 ```
 
 
-
+## STARKNET CLI
+```bash
+starknet get_nonce --contract_address
+```

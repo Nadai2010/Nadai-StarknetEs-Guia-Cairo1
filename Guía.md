@@ -1,4 +1,57 @@
-# Guía Definitica de Starknet Es Cairo 1
+<div align="center">
+<img alt="starknet logo" src="https://github.com/Nadai2010/Nadai-Maths-Starks/blob/master/im%C3%A1genes/Starknet.jpg" width="600" >
+  <h1 style="font-size: larger;">
+    <img src="https://github.com/Nadai2010/Nadai-SHARP-Starknet/blob/master/im%C3%A1genes/Starknet.png" width="40">
+    <strong>Guía Definitiva de Starknet-Es Cairo 1</strong> 
+    <img src="https://github.com/Nadai2010/Nadai-SHARP-Starknet/blob/master/im%C3%A1genes/Starknet.png" width="40">
+  </h1>
+</div>
+
+## Recursos oficiales
+
+- Puede encontrar las notas originales [aquí](https://bit.ly/starkmaths2023)
+- Puede encontrar Traducciones de documentos oficiales de MATHS Starkware [aquí](https://github.com/Starknet-Es/Maths-StarknetEs/blob/main/Gu%C3%ADas%20Oficiales/Readme.md)
+- Puede encontrar Guías completas desde Starknet-Es [aquí](https://github.com/Starknet-Es/Maths-StarknetEs/blob/main/Gu%C3%ADas%20Completas/Readme.md)
+
+## Temas
+
+- [Configuración de su entorno de desarrollo de Starknet](#configuración-de-su-entorno-de-desarrollo-de-starknet)
+    - [Pre-requisitos](#pre-requisitos)
+    - [Git](#git)
+    - [Python3.9](#python39)
+    - [Rust](#rust)
+- [Instalación de la CLI de Starknet](#instalación-de-la-cli-de-starknet)
+    - [Configure su entorno virtual](#configure-su-entorno-virtual)
+    - [Usando venv](#usando-venv)
+    - [Usando pyenv](#usando-pyenv)
+- [Instale las dependencias SO](#instale-las-dependencias-so)
+    - [Ubuntu](#ubuntu)
+    - [Mac](#mac)
+- [Instale la CLI de Starknet](#instale-la-cli-de-starknet)
+- [Instalación del compilador Cairo](#instalación-del-compilador-cairo)
+    - [Agrega los ejecutables de Cairo a tu variable de entorno PATH](#agrega-los-ejecutables-de-cairo-a-tu-variable-de-entorno-path)
+    - [Actualizar Compilador Cairo](#actualizar-compilador-cairo)
+- [Configuración de Docker para el desarrollo de Starknet](#configuración-de-docker-para-el-desarrollo-de-starknet)
+    - [Configuración de tu entorno de shell para Cairo](#configuración-de-tu-entorno-de-shell-para-cairo)
+    - [Ejecutar el contenedor de Docker](#ejecutar-el-contenedor-de-docker)
+    - [Verificar la instalación](#verificar-la-instalación)
+- [Instalación de Cairo con un script (Instalador por Fran)](#instalación-de-cairo-con-un-script-instalador-por-fran)
+    - [Para bash](#para-bash)
+    - [Para Zsh](#para-zsh)
+    - [Reinicia tu shell](#reinicia-tu-shell)
+    - [Actualización](#actualización)
+    - [Desinstalación](#desinstalación)
+    - [Versiones](#versiones)
+- [VS Code](#vs-code)
+- [Desplegando Contratos en Starknet]
+    - [Configuración de variables de entorno](#configuración-de-variables-de-entorno)
+    - [Configuración de una cuenta](#configuración-de-una-cuenta)
+    - [Crear una nueva cuenta](#crear-una-nueva-cuenta)
+    - [Financiar Cuenta](#finanzciar-cuenta)
+    - [Desplegar Cuenta](#desplegar-cuenta)
+
+
+# Guía Definitiva de Starknet-Es Cairo 1
 
 ## Configuración de su entorno de desarrollo de Starknet
 Desde Starknet Español le guiamos a través de la configuración de su entorno de desarrollo para Cairo y Starknet. El objetivo es proporcionarle las herramientas necesarias para construir, implementar e interactuar con contratos inteligentes de Cairo en la red de Starknet. Instalaremos el compilador de Cairo, una herramienta fundamental para esta tarea, y la Interfaz de Línea de Comandos (CLI) de Starknet, una utilidad para interactuar con la red de Starknet.
@@ -12,7 +65,8 @@ El proceso de configuración se puede realizar a través de dos métodos diferen
 ### Pre-requisitos
 Antes de continuar, asegúrese de tener instalados los siguientes pre-requisitos en su sistema:
 
-* [Git](https://git-scm.com/) - Será necesario tener `Git` instalado. A continuación, se muestra el comando para instalar `Git` en Ubuntu. Recuerda verificar las versiones disponibles para tu sistema operativo en el enlace proporcionado:
+## Git
+[Git:](https://git-scm.com/) Será necesario tener `Git` instalado. A continuación, se muestra el comando para instalar `Git` en Ubuntu. Recuerda verificar las versiones disponibles para tu sistema operativo en el enlace proporcionado:
 
 ```bash
 apt-get install git
@@ -24,7 +78,8 @@ Si se produce un error y te solicita entrar como administrador, agrega `sudo` al
 sudo apt-get install git
 ```
 
-* [Python 3.9](https://www.python.org/downloads/release/python-390/) - Primero revise la versión que se encuentra en siu sitema operativo, si ya de serie dispone una versión posterior en Linux por ejemplo, no hacer nada ya luego ajustamos con entornos virtuales, revise su versión:
+## Python3.9
+[Python 3.9](https://www.python.org/downloads/release/python-390/) - Primero revise la versión que se encuentra en siu sitema operativo, si ya de serie dispone una versión posterior en Linux por ejemplo, no hacer nada ya luego ajustamos con entornos virtuales, revise su versión:
 
 ```bash
 python3 --version
@@ -32,7 +87,8 @@ python3 --version
 
 ![Foto](image-13.png)
 
-* [Rust](https://www.rust-lang.org/tools/install) - Les recomendamos revisar el enlace proporcionado para obtener más información sobre la instalación de Rust. A continuación, se muestra el comando recomendado para la instalación de `rustup` en macOS y Linux. Si deseas utilizar otros métodos de instalación, te recomendamos consultar la documentación oficial.
+## Rust
+[Rust](https://www.rust-lang.org/tools/install) - Les recomendamos revisar el enlace proporcionado para obtener más información sobre la instalación de Rust. A continuación, se muestra el comando recomendado para la instalación de `rustup` en macOS y Linux. Si deseas utilizar otros métodos de instalación, te recomendamos consultar la documentación oficial.
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
@@ -113,7 +169,7 @@ python --version
 ```
 ![Foto](image-28.png)
 
-## Instale las dependencias necesarias para su sistema operativo:
+## Instale las dependencias SO:
 Antes de instalar la CLI de Starknet, debe instalar algunas dependencias específicas del sistema. Siga las instrucciones para su sistema operativo:
 
 ### Ubuntu:
@@ -193,7 +249,7 @@ pip install cairo-lang --upgrade
 ## Instalación del compilador Cairo
 Para instalar el compilador Cairo, sigue estos pasos:
 
-1. Ahora procederemos a cloanr y confiugurar nuestro compilADOR DE cAIRO, PRIMERO adegurrsde de estar en la raiz de tu directorio `$HOME`
+1. Ahora procederemos a clonar y configurar nuestro compilador de Cairo. Primero, asegúrate de estar en la raíz de tu directorio `$HOME`.
 ```bash
 cd ~/
 ```
@@ -226,6 +282,8 @@ cairo-compile --version
 ```
 
 ![Foto](image-17.png)
+
+## Actualizar Compilador Cairo
 
 Para actualizar el compilador Cairo, solo necesitamos cambiar a la etiqueta más reciente. Ejecuta los siguientes comandos:
 
@@ -359,7 +417,7 @@ echo 'export CAIRO_ROOT="$HOME/.cairo"' >> ~/.bash_profile
 echo 'command -v cairo-compile >/dev/null || export PATH="$CAIRO_ROOT/target/release:$PATH"' >> ~/.bash_profile
 ```
     
-* Para Zsh:
+## Para Zsh
 
 ```bash
 echo 'export CAIRO_ROOT="$HOME/.cairo"' >> ~/.zshrc
@@ -420,7 +478,18 @@ Y por último, reinicia tu shell:
 exec $SHELL
 ```
 
-## VS Code
+## Versiones
+Una vez tenga todo configurado puede comprobar sus versiones instaladas con los siguientes comadnos por independiente o conjunto como hemos visto a lo largo de la instalación
+
+```bash
+starknet --version
+cairo-compile --version
+starknet-compile --version
+```
+
+![Foto](image-29.png)
+
+## VS Code 
 Ahora, si creamos un contrato de prueba, veremos que la sintaxis no es reconocida por nuestro programa de VS Code.
 
 ![Gráfico](/vscode.png)
@@ -453,24 +522,182 @@ Ahora su contrato de Cairo 1 debería ser reconocido con la sintaxis de la versi
 
 Puede seguir nuevas actualizaciones y configuraciones desde el link oifcial de [StarkWare VS-Code](https://github.com/starkware-libs/cairo/blob/main/vscode-cairo/README.md)
 
+# Despliegue de contratos Starknet
+Ahora veremos como crear una contrato de cuenta, como se controlan estas cuentas, compilar, declarar, desplegar e interactuar con los Contracts que tenemos en Cairo 1.
 
-## Ajustar Variables de Entorno
+## Configuración de variables de entorno
+Los siguientes comandos deben ejecutarse cada vez que abras un nuevo terminal para interactuar con Starknet. Configurarlos te ahorrará tiempo cuando utilices la CLI dentro de la misma sesión del terminal.
 
-## Crear Cuenta
+* Utilizar la red de prueba de Starknet
+
+```bash
+export STARKNET_NETWORK=alpha-goerli
+```
+
+* Establecer la implementación predeterminada de la billetera que se utilizará en la CLI
+
+```bash
+export STARKNET_WALLET=starkware.starknet.wallets.open_zeppelin.OpenZeppelinAccount
+```
+
+Establecer la ruta al compilador binario de Cairo 1. Ajusta esta ruta según tu instalación si es necesario
+
+```bash
+export CAIRO_COMPILER_DIR=~/.cairo/target/release/
+```
+
+* Argumentos del compilador
+```bash
+export CAIRO_COMPILER_ARGS=--add-pythonic-hints
+```
+
+Inicialemnte se puede pasar todo junto de la siguiente manera
+
+```bash
+# Use Starknet testnet
+export STARKNET_NETWORK=alpha-goerli
+# Set the default wallet implementation to be used by the CLI
+export STARKNET_WALLET=starkware.starknet.wallets.open_zeppelin.OpenZeppelinAccount
+# Set the path to the cairo 1 compiler binary. Adapt this path to fit your installation if needed
+export CAIRO_COMPILER_DIR=~/.cairo/target/release/
+# Compiler arguments
+export CAIRO_COMPILER_ARGS=--add-pythonic-hints
+```
+
+Aunque normalmente los errores comunes en estos casos son al volver a iniciar sesión así que si tiene algunos de estos dos errores, pase los `EXPORT` correspondientes
+
+```bash
+Error: AssertionError: A wallet must be specified (using --wallet or the STARKNET_WALLET environment variable), unless specifically using --no_wallet.
+```
+
+![Alt text](image-30.png)
 
 
-pyenv
-instalr cairo
-    docker
-    script fran
-    
-exrenxion vs code (problemas al añadir otros proyecto)
-versiones disponible
-dowgrade version
-update version
+```bash
+The network is unknown. The default list of allowed libfuncs will be used. To specify the network, pass '--network' or set the STARKNET_NETWORK environment variable.
+Error: Exception: feeder_gateway_url must be specified with the "declare" subcommand.
+Consider passing --network or setting the STARKNET_NETWORK environment variable.
+```
 
-crear cuenta
-localizar ceunta
+![Alt text](image-31.png)
+
+Ambos se deben a la falta de exportar `STARKNET_NETWORK` y `STARKNET_WALLET` se soluciona pasando de nuevo los comandos:
+
+```bash
+export STARKNET_NETWORK=alpha-goerli
+export STARKNET_WALLET=starkware.starknet.wallets.open_zeppelin.OpenZeppelinAccount
+```
+
+## Configuración de una cuenta
+Debes configurar tu CLI con un contrato de cuenta y financiarlo.
+
+Las cuentas de Starknet son contratos inteligentes. Como tal, crear una implica enviar una transacción y lleva un poco más de tiempo que crear una EOA en otras redes. 
+
+Este proceso consta de tres pasos:
+
+1. Generar localmente la dirección de tu cuenta
+
+2. Financiarla
+
+3. Desplegarla
+
+Las cuentas de Starknet declaradas a través de la CLI se almacenan en tu máquina en la carpeta `~/.starknet_accounts/` en la que podremos revisar su estado o ver los nombres y redes de las cuentas que tenemos.
+
+Para poder visualizar estas carpeta ocultas en los SO, en ubuntu bastará con tocar `Crtl+H` y os aparecerán estas carpetas, como `.cairo`, es decir todas con `.` estás ocultas.
+
+![Alt text](image-32.png)
+
+## Crear una nueva cuenta
+En este paso emepzaremos a crear nuestra nueva cuenta que inicialmente solo será calculada veamos, de hecho, podemos hacerlo sin concción a internet ya que sólo será el procedimiento de generar nuesta Private y Public Key:
+
+```bash
+starknet new_account --account NadaiTest
+```
+
+Tu terminal devolverá la dirección de tu cuenta.
+
+![Alt text](image-33.png)
+
+Y podremos comprobar en nuestro archivo `starknet_open_zeppelin_accounts.json` que nuestra nueva ya aparece con un estado de `false` (aun no ha sido desplegado)
+
+![Alt text](image-34.png)
+
+Pero si nos detecta aunque estemos `sin conección a la red` la cuenta creada, por lo que si pasamos el mismo comando nos daría el siguiente error
+
+![Alt text](image-35.png)
+
+Pero ¿Qué pasaría si borramos nuestra cuenta que ha sido calculada pero no desplegada?¿Nos daría los mismo valores? Vamos a probar, borremos la cuetna que aún no ha sido desplegada
+
+![Alt text](image-36.png)
+
+- Account address: 0x03175cdd79fe7cc981a7876ee19fd9aadc5c36b12a1534fe730857b7d0d3a330
+
+Y volvemos a correr el comando para desplegar nuestra cuenta que antes no s daba error como cuenta ya existente:
+
+```bash
+starknet new_account --account NadaiTest
+```
+
+![Alt text](image-37.png)
+
+Vemos como se ha generado una cuenta, una private key, public key completamente nueva asociado a nuestro nombre.
+
+- Account address: 0x053e688af06f4d763213a165bca6811cdd603e031922a13e10819c2be8d3fc1c
+
+## Finanzciar Cuenta
+Primero aclaremos que estas cuentas son una versión modificada del contrato de cuenta de OpenZeppelin. La firma se calcula de manera diferente.
+
+Ahora necesitamos tener fondos en esa cuenta que ha sido sólo calculda, moveremos la cantidad adecuada de fondos a la cuenta para luego desplegar nuestra cuenta invocando el comando `starknet deploy_account`.
+
+- Utiliza el [faucet](https://faucet.goerli.starknet.io/) para obtener fondos y enviarlos a la cuenta.
+- Transfiere fondos utilizando [Starkgate](https://goerli.starkgate.starknet.io/).
+- Transfiere fondos de otra cuenta.
+
+En este caso usamos faucet
+
+![Alt text](image-40.png)
+
+Sin importar cómo lo hagas, asegúrate de que la transacción de financiación alcance el estado `PENDING` antes de continuar. Puedes verificarlo en [Starkscan](https://testnet.starkscan.co/), [Voyager](https://goerli.voyager.online/) o como aprenderemos en este caso a directamente con la CLI, y comprobar como nuestro estado de despliegue pasa de `false` a `true`
+
+![Alt text](image-39.png)
+
+El hash de la [transacción del faucet](https://testnet.starkscan.co/tx/0x7438cc6d5a5cd40b64c6cc7684ad054ce682e236da48534c8411626378f4e3d#overview)) será el que usemos para ver el estado de nuestro envio de saldo para poder desplegar, también puede hacerlo desde los explodaroes mencionados
+
+```bash
+starknet get_transaction --hash 0x7438cc6d5a5cd40b64c6cc7684ad054ce682e236da48534c8411626378f4e3d
+```
+
+![Alt text](image-38.png)
+
+En este caso vemos que ya ha sido aceptada en L2 `ACCEPTED_ON_L2`, asi que procedamos a desplegar la cuenta
+
+
+# Desplegar Cuenta
+Ahora ya podemos desplegar nuestra cuenta con el comando y el nombre de la cuenta, en este caso `NadaiTest`
+
+```bash
+starknet deploy_account --account NadaiTest
+```
+
+Tu resultado de muestra debería verse algo así:
+
+![Alt text](image-41.png)
+
+Y ya podriamos comprobar que nuesto estado de cuenta ha cambiado `true` y ya definitivamente se encuentra desplegado.
+
+![Alt text](image-42.png)
+
+* [Hash NadaiTest](https://testnet.starkscan.co/contract/0x053e688af06f4d763213a165bca6811cdd603e031922a13e10819c2be8d3fc1c)
+
+Como ultima comprobación antes de empezar con nuestro Contratos de Cairo 1, veamos como nuestra cuenta ya se sitúa con una transación y por lo tanto el `nonce 1` desde la CLI
+
+```bash
+starknet get_nonce --contract_address 0x053e688af06f4d763213a165bca6811cdd603e031922a13e10819c2be8d3fc1c
+```
+
+![Alt text](image-43.png)
+
+
 ciclo de saldo en cuenta
 
 aprender a compilar

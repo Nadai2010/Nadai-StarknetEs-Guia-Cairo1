@@ -1,4 +1,4 @@
-<div align="center">
+<div align="left">
 <img alt="starknet logo" src="https://github.com/Nadai2010/Nadai-StarknetEs-SC/blob/main/imagenes/portada.jpeg" width="600" >
   <h1 style="font-size: larger;">
     <img src="https://github.com/Nadai2010/Nadai-SHARP-Starknet/blob/master/im%C3%A1genes/Starknet.png" width="40">
@@ -675,7 +675,7 @@ Las cuentas de Starknet declaradas a través de la CLI se almacenan en tu máqui
 Para poder visualizar estas carpeta ocultas en los SO, en ubuntu bastará con tocar `Crtl+H` y os aparecerán estas carpetas, como `.cairo`, es decir todas con `.` estás ocultas.
 
 <div align="left">
-<img src="imagenes/image-32.png" width="500">
+<img src="imagenes/image-32.png" width="300">
 </div>
 
 ## Crear una nueva cuenta
@@ -811,7 +811,7 @@ starknet-compile Hola.cairo Hola.json
 ```
 
 <div align="left">
-<img src="imagenes/image-44.png" width="500">
+<img src="imagenes/image-44.png" width="300">
 </div>
 
 ## Declaración
@@ -870,13 +870,13 @@ Si todo ha ido bien ya podra revisar su contrato, puede revisar esta implentaci�
 - Mensaje = Starknet La Mejor L2 😜
 - Felt = 523853089324632803106236192193517396970156379196793374498332
 
-<div align="center">
+<div align="left">
 <img src="imagenes/image-49.png" width="500">
 </div>
 
 Podríamos directamente al explorador y contrato que hemos desplegado, conectar nuestra cuenta de `ArgentX` o `Braavos` que queramos y dejar nuestro mensaje a `Hola_Starknianos_Dice`.
 
-<div align="center">
+<div align="left">
 <img src="imagenes/image-50.png" width="500">
 </div>
 

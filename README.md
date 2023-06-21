@@ -1,4 +1,4 @@
-<div align="left">
+<div align="center">
 <img alt="starknet logo" src="https://github.com/Nadai2010/Nadai-StarknetEs-SC/blob/main/imagenes/portada.jpeg" width="600" >
   <h1 style="font-size: larger;">
     <img src="https://github.com/Nadai2010/Nadai-SHARP-Starknet/blob/master/im%C3%A1genes/Starknet.png" width="40">

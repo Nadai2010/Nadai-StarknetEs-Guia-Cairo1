@@ -5,6 +5,14 @@
     <strong>Guía Definitiva de Starknet-Es Cairo 1</strong> 
     <img src="https://github.com/Nadai2010/Nadai-SHARP-Starknet/blob/master/im%C3%A1genes/Starknet.png" width="40">
   </h1>
+
+
+<a href="https://twitter.com/StarkNetEs">
+<img src="https://img.shields.io/twitter/follow/StarknetEs?style=social"/>
+</a>
+<a href="https://github.com/Starknet-Es/StarknetEs-Aprendizaje">
+<img src="https://img.shields.io/github/stars/Starknet-Es/StarknetEs-Aprendizaje?style=social"/>
+</a>
 </div>
 
 ## Recursos oficiales

@@ -942,7 +942,7 @@ Transaction hash: 0x525a2bdc1f57b9c03a620221dd5aa60e9a80124fafaf2e01c384126d03b4
 Aquí deberemos pasar los argumentos del constructor, en este caso pasamos `Nadai` que es igual en felt `336641417577`, puede usar el [Stark-Util](https://www.stark-utils.xyz/converter)
 
 <div align="left">
-<img src="imagenes/image-55.png" width="500">
+<img src="imagenes/image-55.png" width="700">
 </div>
 
 ```bash

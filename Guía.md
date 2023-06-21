@@ -106,6 +106,13 @@ Después de crear y activar el entorno virtual, debería ver (cairo_venv) en el 
 
 ![Foto](image-10.png)
 
+Ahora puede revisar que su vesión de python si es la que hemos requerido y necesita por ahora.
+
+```bash
+python --version
+```
+![Foto](image-28.png)
+
 ## Instale las dependencias necesarias para su sistema operativo:
 Antes de instalar la CLI de Starknet, debe instalar algunas dependencias específicas del sistema. Siga las instrucciones para su sistema operativo:
 

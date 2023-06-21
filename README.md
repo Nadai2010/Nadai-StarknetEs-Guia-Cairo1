@@ -92,7 +92,9 @@ sudo apt-get install git
 python3 --version
 ```
 
-![Foto](/imagenes/image-13.png)
+<div align="left">
+<img src="imagenes/image-13.png" width="500">
+</div>
 
 ### Rust
 [Rust](https://www.rust-lang.org/tools/install) - Les recomendamos revisar el enlace proporcionado para obtener más información sobre la instalación de Rust. A continuación, se muestra el comando recomendado para la instalación de `rustup` en macOS y Linux. Si deseas utilizar otros métodos de instalación, te recomendamos consultar la documentación oficial.
@@ -107,7 +109,9 @@ Para revisar la instalación ha ido correctamente revise su versión:
 rustc --version
 ```
 
-![Foto](/imagenes/image-12.png)
+<div align="left">
+<img src="imagenes/image-12.png" width="500">
+</div>
 
 En caso de dificultades anterirores también puede instalar una versión estable de Rust con los comandos:
 
@@ -151,7 +155,9 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
 
-![Foto](/imagenes/image-9.png)
+<div align="left">
+<img src="imagenes/image-9.png" width="500">
+</div>
 
 Reinicie su terminal y ejecute los siguientes comandos
 
@@ -169,14 +175,21 @@ pyenv activate cairo_venv
 
 Después de crear y activar el entorno virtual, debería ver (cairo_venv) en el indicador de línea de comando, lo que indica que el entorno virtual está activo, por ejemplo: `(cairo_venv) nadai@nadai:`
 
-![Foto](/imagenes/image-10.png)
+<div align="left">
+<img src="imagenes/image-10.png" width="500">
+</div>
+
+
 
 Ahora puede revisar que su vesión de python si es la que hemos requerido y necesita por ahora.
 
 ```bash
 python --version
 ```
-![Foto](/imagenes/image-28.png)
+<div align="left">
+<img src="imagenes/image-28.png" width="500">
+</div>
+
 
 ## Instale las dependencias SO:
 Antes de instalar la CLI de Starknet, debe instalar algunas dependencias específicas del sistema. Siga las instrucciones para su sistema operativo:
@@ -218,13 +231,18 @@ pip install cairo-lang
 
 Después de haber instalado la CLI de Starknet, verifique su instalación comprobando la versión, pero recuerde entrar en su entorno virtual
 
-![Foto](/imagenes/image-14.png)
+<div align="left">
+<img src="imagenes/image-14.png" width="500">
+</div>
+
 
 ```bash
 starknet --version
 ```
 
-![Foto](/imagenes/image-15.png)
+<div align="left">
+<img src="imagenes/image-15.png" width="500">
+</div>
 
 En este caso de comprobación de version puede usar `-v` o `--version`, si quiere acceder a la última version publicada revise [Cairo-Lang Releases](https://github.com/starkware-libs/cairo-lang/releases)
 
@@ -247,7 +265,9 @@ Luego, verifica la versión nuevamente:
 starknet --version
 ```
 
-![Foto](/imagenes/image-15.png)
+<div align="left">
+<img src="imagenes/image-15.png" width="500">
+</div>
 
 La salida debería mostrar la versión instalada de Starknet CLI. Asegúrate de que la versión coincida con la última versión publicada.
 

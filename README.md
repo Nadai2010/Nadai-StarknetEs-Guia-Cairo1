@@ -33,6 +33,7 @@
 - [Libro Cairo](https://cairo-book.github.io/) - Libro de Cairo
 - [Sintaxis Cairo by Nethermind](https://github.com/NethermindEth/CairoByExample/)  |   [Sintaxis Cairo by LambdaClass](https://github.com/lambdaclass/cairo-by-example/)
 
+---
 
 ## Temas
 
@@ -78,6 +79,10 @@
     - [ENS](#ens)
     - [Votar](#votar)
     - [ERC-20](#erc20)
+    - [ERC-721](#erc721)
+    - [Pragma](#pragma)
+- [Test](#test)
+- [Starknet CLI](#starknet-cli)
 
 
 ---
@@ -747,7 +752,7 @@ Vemos como se ha generado una cuenta, una private key, public key completamente 
 
 - Account address: 0x053e688af06f4d763213a165bca6811cdd603e031922a13e10819c2be8d3fc1c
 
-## Finanzciar Cuenta
+## Financiar Cuenta
 Primero aclaremos que estas cuentas son una versión modificada del contrato de cuenta de OpenZeppelin. La firma se calcula de manera diferente.
 
 Ahora necesitamos tener fondos en esa cuenta que ha sido sólo calculda, moveremos la cantidad adecuada de fondos a la cuenta para luego desplegar nuestra cuenta invocando el comando `starknet deploy_account`.
@@ -992,7 +997,7 @@ Transaction hash: 0x7f638882abfc06cf8b95de2a192b3089ce7bef00e6d5aa7276059394b776
 ---
 
 ## Votar 
-[Votar.cairo](/src/Votar.cairo) es una implementación de un servicio de votos en Cairo. Podrá votar con `si` o `no`, solo aquelos que hayan sido añadidos, para ello tenemos la función del constructor que registrará `_register_voters` en este caso hasta 3 votantes. Podrá leer el estado de votos, votar y ver quien ha votado.
+[Votar.cairo](/src/Votar.cairo) es una implementación de un servicio de votos en Cairo. Podrá votar con `si` o `no`, solo aquellos que hayan sido añadidos, para ello tenemos la función del constructor que registrará `_register_voters` en este caso hasta 3 votantes. Podrá leer el estado de votos, votar y ver quien ha votado.
 
 ### Compile
 ```bash
@@ -1046,138 +1051,180 @@ Ahora podrá añadir su voto si su cuenta ha sido registrada.
 ---
 
 ## ERC20 
+[ERC20.cairo](/src/ERC20.cairo) es una implementación de un token ERC-20 en Cairo. Podrá crear su propio token, establecer un `name` , `symbol`, los `decimals`, `mint`, `aprobar` o transferir tus ERC-20. 
+
+
+### Compile
 ```bash
 starknet-compile ERC20.cairo ERC20.json
 ```
 
+### Declare
 ```bash
 starknet declare --contract ERC20.json --account Nadai
 ```
 
+Si todo ha ido bien deberá salir la transacción con la dirección del contrato que ha declarado.
+
+```bash
 Sending the transaction with max_fee: 0.000001 ETH (1387470794710 WEI).
 Declare transaction was sent.
 Contract class hash: 0x7db653c91959fd5674c1bb5b8a3938b4b14ac9ecdda9da195ac35fe65cae183
 Transaction hash: 0x48b5bb7fa8358c16cc2162fa8441b493f0bc883b146fe199a83fbf3653b6c7d
+```
+
+### Desplegar
+Aquí deberemos pasar los argumentos del constructor, en este caso pasamos `names` `symbol` `total supply` y el `recipient`, primeros pasamos todo a felt con el [Stark-Util](https://www.stark-utils.xyz/converter)
+
 
 ```bash
 starknet deploy --class_hash 0x7db653c91959fd5674c1bb5b8a3938b4b14ac9ecdda9da195ac35fe65cae183 --inputs 336641417577 5128521 1000 0 1795950254530259382270168937734171348535331377400385313842303804539016002736 --account Nadai
 ```
 
+Si todo ha ido bien deberá salir la transacción con la diección del contrato que ha desplagado.
+
+```bash
 Sending the transaction with max_fee: 0.000009 ETH (8865223076573 WEI).
 Invoke transaction for contract deployment was sent.
 Contract address: 0x05ecb0d7f6a32fa713c1568186dfb88392126c48332d04327e4cdea8061696d1
 Transaction hash: 0x14081aa8b720286828ff2c9207d726e585e77e6c43af3bbadd90d13ffa3aee2
-
-https://testnet.starkscan.co/contract/0x05ecb0d7f6a32fa713c1568186dfb88392126c48332d04327e4cdea8061696d1#read-write-contract
-
-**Approve** https://testnet.starkscan.co/tx/0xd6ad2a3f22e1f4f6958ae3d5ebe41bd22f8a6dd2dda9c55b6fd7bb6601fd02
-**Transfer** https://testnet.starkscan.co/tx/0x7c2785fbf695e58b67cc488aae8acf877226145866aef9f550efcf35ad794e3
-
-
-
-
-
-
-
-
-
----
-
-## Pragma
-Cuidado espacio en testn 
-0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093
-ETH/USD = 19514442401534788
-BTC/USD = 18669995996566340
-
-starknet-compile PriceFeed.cairo PriceFeed.json
-
-starknet declare --contract PriceFeed.json --account Nadai
-
-* Prueba 1
-Contract class hash: 0x475123df9fe4c04d58f242cb5afbc36de34316985ea2a766c2f683bf47bb441
-Transaction hash: 0x44df967e90b6636e4a272fb584acec9819ac32737b77bed4b1760e2994d7f2a
-
-starknet deploy --class_hash 0x475123df9fe4c04d58f242cb5afbc36de34316985ea2a766c2f683bf47bb441 --inputs 0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093 19514442401534788 --account Nadai
-
-Sending the transaction with max_fee: 0.000006 ETH (6121500085702 WEI).
-Invoke transaction for contract deployment was sent.
-Contract address: 0x01c8e76a8dc479357c67ae119bacbda3b4f92821e58a142835c7737ff47853bd
-Transaction hash: 0x7f9b8384317c3cd171a4a30a350a590acd8e0e02ac2e6ffbdcd6f0dc4e33230
-
-* Prueba 2 BTC/USD
-
-starknet-compile PriceFeed.cairo PriceFeed.json
-
-starknet declare --contract PriceFeed.json --account Nadai
-
-Contract class hash: 0xf8cd5bb03e4feb41f3a7af81dcee6cbc0e617651ae47276292aede18619c5f
-Transaction hash: 0x2570af0c51b0ce82c071284c2f2c4764ab39afd7a0018b56022baa84d3d0342
-
-```bash
-starknet deploy --class_hash 0xf8cd5bb03e4feb41f3a7af81dcee6cbc0e617651ae47276292aede18619c5f --inputs 0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093 18669995996566340 --account Nadai
 ```
 
-Sending the transaction with max_fee: 0.000006 ETH (6121500104066 WEI).
-Invoke transaction for contract deployment was sent.
-Contract address: 0x073d297ea88a3f3b2d0528a214bc897222b243872521ae02859f2d5bd3d23f86
-Transaction hash: 0x623d8f42c2594e050f7ec92f76b3c3639e4cc62e0a6c90b7f264cf7c1824fc3
+Ahora podrá ver su nuevo token con los valores que se han establecido en el constructor en el despliegue.
 
----
+<div align="left">
+<img src="imagenes/image-59.png" width="700">
+</div>
 
+- [Link Contract ERC-20](https://testnet.starkscan.co/contract/0x05ecb0d7f6a32fa713c1568186dfb88392126c48332d04327e4cdea8061696d1#read-write-contract)
+
+- [Approve](https://testnet.starkscan.co/tx/0xd6ad2a3f22e1f4f6958ae3d5ebe41bd22f8a6dd2dda9c55b6fd7bb6601fd02)
+
+- [Transfer](https://testnet.starkscan.co/tx/0x7c2785fbf695e58b67cc488aae8acf877226145866aef9f550efcf35ad794e3)
+
+<div align="left">
+<img src="imagenes/image-60.png" width="700">
+</div>
 
 ---
 
 ## ERC721
+[ERC721.cairo](/src/ERC20.cairo) es una implementación de un token no fungible ERC-721 en Cairo. Podrá crear su propio NFT, en este ejemplo sencillo basta con establecer un `name` y `symbol` para desplegar este contrato.
+
+### Compile
 ```bash
 starknet-compile ERC721.cairo ERC721.json
 ```
 
+### Declare
 ```bash
 starknet declare --contract ERC721.json --account Nadai
 ```
 
+Si todo ha ido bien deberá salir la transacción con la dirección del contrato que ha declarado.
+
+
+```bash
 Sending the transaction with max_fee: 0.000001 ETH (1487715674268 WEI).
 Declare transaction was sent.
 Contract class hash: 0x6b1dca7fb9e0166e639a08d5521d2ad854fd023a9d4b2bcbc3c79d510b87fe0
 Transaction hash: 0x44d3b2321c8b2bc2c06ff0c11cebb4fad72cc0aba9f7fe603df3ee03658d328
+```
+
+### Desplegar
+Aquí deberemos pasar los argumentos del constructor, en este caso pasamos `names` y `symbol` como inputs, primero pasamos todo a felt con el [Stark-Util](https://www.stark-utils.xyz/converter)
+
 
 ```bash
 starknet deploy --class_hash 0x6b1dca7fb9e0166e639a08d5521d2ad854fd023a9d4b2bcbc3c79d510b87fe0 --inputs 336641417577 5129801 --account Nadai
 ```
 
+Si todo ha ido bien deberá salir la transacción con la diección del contrato que ha desplagado.
+
+```bash
 Sending the transaction with max_fee: 0.000007 ETH (6609894432026 WEI).
 Invoke transaction for contract deployment was sent.
 Contract address: 0x041250c83391e1ba8701c39e8eca759525c4d34f87ccfdf5a4d6c35c5282fa5d
 Transaction hash: 0x6d169a3a0ce233f7b46546dc995bc4d6cdc779a88d768e0e4a4dc2b4e2c94d1
-
-```bash
-starknet get_transaction --hash 0x44d3b2321c8b2bc2c06ff0c11cebb4fad72cc0aba9f7fe603df3ee03658d328
 ```
 
-![Graph](//imagenes/imagenes/get_transaction.png)
+- [Link Contract ERC-721](https://testnet.starkscan.co/contract/0x041250c83391e1ba8701c39e8eca759525c4d34f87ccfdf5a4d6c35c5282fa5d#read-write-contract)
 
+
+<div align="left">
+<img src="imagenes/image-61.png" width="700">
+</div>
+
+---
+
+## Pragma
+[PriceFeed.cairo](/src/PriceFeed.cairo) es una implementación para saber los precios de algunas token del Oracle de [Pragma](https://docs.pragmaoracle.com/) en Cairo. 
+
+Pragma es la red de oráculos descentralizada, transparente y composible, la funcionalidad de Pragma va mucho más allá de los precios. 
+
+Los contratos inteligentes de Pragma aprovechan el cálculo zk para agregar datos sin procesar con total transparencia y solidez. Debido a que el oráculo está completamente en cadena, cualquiera puede verificar cualquier punto de datos desde el origen a través de la transformación hasta el destino.
+
+### Compile
 ```bash
-starknet get_full_contract --contract_address 0x041250c83391e1ba8701c39e8eca759525c4d34f87ccfdf5a4d6c35c5282fa5d
+starknet-compile PriceFeed.cairo PriceFeed.json
 ```
 
-![Graph](//imagenes/imagenes/full_contract.png
+### Declare
+```bash
+starknet declare --contract PriceFeed.json --account Nadai
+```
+
+Si todo ha ido bien deberá salir la transacción con la dirección del contrato que ha declarado, en nuestro caso cambiambos el nombre del `view` en [PriceFeed.cairo](/src/PriceFeed.cairo#L26)
+
+Siempre recordar que si ya ha sido declarado solo hace falta desplegar con el mismo `class hash`
+
+**BTC/USD**
+```bash
+Contract class hash: 0x00f8cd5bb03e4feb41f3a7af81dcee6cbc0e617651ae47276292aede18619c5f
+Transaction hash: 0x02570af0c51b0ce82c071284c2f2c4764ab39afd7a0018b56022baa84d3d0342
+```
+
+### Desplegar
+Aquí deberemos pasar los argumentos del constructor, en este caso pasamos el contract de pragma para el price feed `0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093` y el par que vamos a escoger, en este caso realizamos pruebas con `BTC/USD` como input, en este caso no hace falta pasar nada ya que pueden copiar estos valores desde los doc de Pragma, auqnue podrá comprobar que todo es `felt`, dejamos una vez más el convertidor de [Stark-Util](https://www.stark-utils.xyz/converter)
+
+Si quiere revisar todos los activos disponibles, los feed data o cualquier otra consulta de datos revise la [documentación oficial](https://docs.pragmaoracle.com/docs/starknet/data-feeds/supported-assets)
+
+* StarkNet Mainnet = 0x0346c57f094d641ad94e43468628d8 e9c574dcb2803ec372576ccc60a40be2c4
+* StarkNet Alpha-Goerli = 0x446812bac98c08190dee8967180f4e 3cdcd1db9373ca269904acb17f67f7093
+* StarkNet Alpha-Goerli 2 =	0xc28f8752abb9ed18f65fed730b8faa 69bdf6128bb730411efd916284701938
+* ETH/USD = 19514442401534788
+* BTC/USD = 18669995996566340
 
 
+### Prueba BTC/USD
+Pasamos los comandos con las entradas de la testnet de `Alpha-Goerli` y en par `BTC/USD` que podemos revisar que es un `string` convertido a `felt`
+
+<div align="left">
+<img src="imagenes/image-62.png" width="700">
+</div>
 
 
+```bash
+starknet deploy --class_hash 0xf8cd5bb03e4feb41f3a7af81dcee6cbc0e617651ae47276292aede18619c5f --inputs 0x446812bac98c08190dee8967180f4e3cdcd1db9373ca269904acb17f67f7093 18669995996566340 --account Nadai
+```
+
+Si todo ha ido bien deberá salir la transacción con la dirección del contrato que ha desplagado.
+
+```bash
+Sending the transaction with max_fee: 0.000006 ETH (6121500104066 WEI).
+Invoke transaction for contract deployment was sent.
+Contract address: 0x073d297ea88a3f3b2d0528a214bc897222b243872521ae02859f2d5bd3d23f86
+Transaction hash: 0x623d8f42c2594e050f7ec92f76b3c3639e4cc62e0a6c90b7f264cf7c1824fc3
+```
+
+- [Link Contract Price Feed BTC/USD](https://testnet.starkscan.co/contract/0x073d297ea88a3f3b2d0528a214bc897222b243872521ae02859f2d5bd3d23f86#read-write-contract)
 
 
+Aquí puede ver un montaje del día de la prueba, usted puede hacer las llamadas que quiera para estar actualizado en este par gracias a Pragma, sólo revise el `view_price_btc_usd_` [aquí](https://testnet.starkscan.co/contract/0x073d297ea88a3f3b2d0528a214bc897222b243872521ae02859f2d5bd3d23f86#read-write-contract)
 
-
-
-
-
-
-
-
-
-
-
+<div align="left">
+<img src="imagenes/image-63.png" width="700">
+</div>
 
 ---
 
@@ -1198,15 +1245,27 @@ cairo-test ./tests/suma.cairo
 ```
 
 Si el resultado es correcto:
-![Foto](/Captura%20desde%202023-06-13%2022-23-15.png)
 
-En caso de error en el resultado:
-![Foto](/Captura%20desde%202023-06-13%2023-19-26.png)
+<div align="left">
+<img src="imagenes/suma1.png" width="300">
+</div>
 
-Suma
-```bash
-cairo-test ./tests/suma.cairo
-```
+Vemos el error que hemos definido en el contract [suma.cairo](/tests/suma.cairo#L6) al ejecutar mal la operación.
+
+<div align="left">
+<img src="imagenes/suma3.png" width="300">
+</div>
+
+En caso de error en el resultado imprimirá el mensaje anterior
+
+<div align="left">
+<img src="imagenes/suma2.png" width="300">
+</div>
+
+
+---
+
+
 
 Resta
 ```bash
@@ -1244,6 +1303,9 @@ Podremos pasar valores en booleanos o numericos pero necesitan que sea el valor 
 cairo-test ./tests/tupla.cairo
 ```
 
+---
+
+
 # Starknet CLI
 ```bash
 starknet get_nonce --contract_address X
@@ -1257,3 +1319,21 @@ starknet get_transaction --hash X
 starknet get_full_contract --contract_address X
 ```
 
+---
+
+
+```bash
+starknet get_transaction --hash 0x44d3b2321c8b2bc2c06ff0c11cebb4fad72cc0aba9f7fe603df3ee03658d328
+```
+
+<div align="left">
+<img src="imagenes/get_transaction.png" width="500">
+</div>
+
+```bash
+starknet get_full_contract --contract_address 0x041250c83391e1ba8701c39e8eca759525c4d34f87ccfdf5a4d6c35c5282fa5d
+```
+
+<div align="left">
+<img src="imagenes/full_contract.png" width="500">
+</div>

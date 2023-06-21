@@ -56,8 +56,10 @@
     - [Declaración](#declaración)
     - [Despliegue](#despliegue)
     - [Interactuar](#intercatuar)
-- [Contratos Cairo 1]
-    - [ENS]
+- [Contratos Cairo 1](#contratos-cairo-1)
+    - [ENS](#ens)
+    - [Votar](#votar)
+    - [ERC-20](#erc20)
 
 
 ---
@@ -914,7 +916,7 @@ Ahora podrá revisar en el explorador el evento y el mensaje que hemos dejado, e
 En esta sección iremos añadiendo algunos contratos de interés, pruebas y recursos mínimo para un despliego más rápido.
 
 ## ENS
-Ens es una implementación sencilla de un servicio de espacios de nombres en Cairo. Contiene una única función externa llamada `NomreAlmacenado` y una única función de vista llamada `obtener_nombre`. También se utiliza una variable de almacenamiento llamada `names`, que es un mapeo de dirección a nombre, para almacenar los nombres asignados a cada dirección. Además, se emite un evento llamado `almacenar_nombre` cada vez que se almacena un nombre.
+[Ens.cairo](/src/ENS.cairo) es una implementación sencilla de un servicio de espacios de nombres en Cairo. Contiene una única función externa llamada `NomreAlmacenado` y una única función de vista llamada `obtener_nombre`. También se utiliza una variable de almacenamiento llamada `names`, que es un mapeo de dirección a nombre, para almacenar los nombres asignados a cada dirección. Además, se emite un evento llamado `almacenar_nombre` cada vez que se almacena un nombre.
 
 
 ### Compile
@@ -927,7 +929,7 @@ starknet-compile ENS.cairo ENS.json
 starknet declare --contract ENS.json --account Nadai
 ```
 
-Si todo ha ido bien deberá salir la transacción con la diección del contrato que ha declarado.
+Si todo ha ido bien deberá salir la transacción con la dirección del contrato que ha declarado.
 
 ```bash
 Sending the transaction with max_fee: 0.000001 ETH (1378300052376 WEI).
@@ -936,8 +938,8 @@ Contract class hash: 0x6fddb1d03560a9f027e05c161cd391e4ecd840666809f223502bcb9e2
 Transaction hash: 0x525a2bdc1f57b9c03a620221dd5aa60e9a80124fafaf2e01c384126d03b4abf
 ```
 
-# Desplegar
-Aquí deberemos pasar los argumentos del constructor, en este caso pasamos `Nadai` que es igual en felt `336641417577`
+### Desplegar
+Aquí deberemos pasar los argumentos del constructor, en este caso pasamos `Nadai` que es igual en felt `336641417577`, puede usar el [Stark-Util](https://www.stark-utils.xyz/converter)
 
 <div align="left">
 <img src="imagenes/image-55.png" width="500">
@@ -947,7 +949,7 @@ Aquí deberemos pasar los argumentos del constructor, en este caso pasamos `Nada
 starknet deploy --class_hash 0x6fddb1d03560a9f027e05c161cd391e4ecd840666809f223502bcb9e27fa215 --inputs 336641417577 --account Nadai
 ```
 
-Si todo ha ido bien deberá salir la transacción con la diección del contrato que ha desplagado.
+Si todo ha ido bien deberá salir la transacción con la dirección del contrato que ha desplagado.
 
 ```bash
 Sending the transaction with max_fee: 0.000005 ETH (4776200186272 WEI).
@@ -962,13 +964,106 @@ Transaction hash: 0x7f638882abfc06cf8b95de2a192b3089ce7bef00e6d5aa7276059394b776
 
 
 <div align="left">
-<img src="imagenes/image-53.png" width="500">
+<img src="imagenes/image53.png" width="700">
 </div>
 
 <div align="left">
-<img src="imagenes/image-54.png" width="500">
+<img src="imagenes/image-54.png" width="700">
 </div>
 
+---
+
+## Votar 
+[Votar.cairo](/src/Votar.cairo) es una implementación de un servicio de votos en Cairo. Podrá votar con `si` o `no`, solo aquelos que hayan sido añadidos, para ello tenemos la función del constructor que registrará `_register_voters` en este caso hasta 3 votantes. Podrá leer el estado de votos, votar y ver quien ha votado.
+
+### Compile
+```bash
+starknet-compile Votar.cairo Votar.json
+```
+
+### Declare
+```bash
+starknet declare --contract Votar.json --account Nadai
+```
+
+Si todo ha ido bien deberá salir la transacción con la dirección del contrato que ha declarado.
+
+```bash
+Sending the transaction with max_fee: 0.000001 ETH (1378300314253 WEI).
+Declare transaction was sent.
+Contract class hash: 0x2ce8d6a94592d2b47da3902f8b00bd4cd5c575ffd8d0aa33cebd5dbf0eae906
+Transaction hash: 0x4d6bce29802a855a95c76595efe03681765f3bc0593c988191594240b2226d8
+```
+
+### Desplegar
+Aquí deberemos pasar los argumentos del constructor, en este caso pasamos las cuentas que van a ser registradas para votar, las pasamos a felt con el [Stark-Util](https://www.stark-utils.xyz/converter)
+
+```bash
+starknet deploy --class_hash 0x02ce8d6a94592d2b47da3902f8b00bd4cd5c575ffd8d0aa33cebd5dbf0eae906 --inputs 1795950254530259382270168937734171348535331377400385313842303804539016002736 2576485153152103101814659868666844275075629902050884189831195075733091688326 1129738685687880537468674905681849347313318001773551180695869634292384364582 --account Nadai
+```
+
+Si todo ha ido bien deberá salir la transacción con la diección del contrato que ha desplagado.
+
+```bash
+Sending the transaction with max_fee: 0.000012 ETH (11515903420223 WEI).
+Invoke transaction for contract deployment was sent.
+Contract address: 0x07cfd595045ddbe08ce5b562f46c0d105af80794380878728634a9e8a84a7942
+Transaction hash: 0x5262b3dc24b511f1506a04fd4ef17cf0b120668bccaa282a7805022eb005320
+```
+
+Ahora podrá añadir su voto si su cuenta ha sido registrada.
+
+<div align="left">
+<img src="imagenes/image-58.png" width="700">
+</div>
+
+- [Link Contract Votar](https://testnet.starkscan.co/contract/0x07cfd595045ddbe08ce5b562f46c0d105af80794380878728634a9e8a84a7942)
+
+- [Añadir Voto 1](https://testnet.starkscan.co/tx/0x034c649a50e5befa7108e5f29ca721317bd32a17631419a0c48604e82c19450f)[,2](https://testnet.starkscan.co/tx/0x03f57abbfaa3f10821fe5c133cc020d1b12c64c170d45531df73fed54eab7fc4)[ y 3](https://testnet.starkscan.co/tx/0x012eca6a8dbc4b122ece748bb54547115bd8584cc5cafb1f83db1e6ff0be3ff9)
+
+<div align="left">
+<img src="imagenes/image57.png" width="700">
+</div>
+
+---
+
+## ERC20 
+```bash
+starknet-compile ERC20.cairo ERC20.json
+```
+
+```bash
+starknet declare --contract ERC20.json --account Nadai
+```
+
+Sending the transaction with max_fee: 0.000001 ETH (1387470794710 WEI).
+Declare transaction was sent.
+Contract class hash: 0x7db653c91959fd5674c1bb5b8a3938b4b14ac9ecdda9da195ac35fe65cae183
+Transaction hash: 0x48b5bb7fa8358c16cc2162fa8441b493f0bc883b146fe199a83fbf3653b6c7d
+
+```bash
+starknet deploy --class_hash 0x7db653c91959fd5674c1bb5b8a3938b4b14ac9ecdda9da195ac35fe65cae183 --inputs 336641417577 5128521 1000 0 1795950254530259382270168937734171348535331377400385313842303804539016002736 --account Nadai
+```
+
+Sending the transaction with max_fee: 0.000009 ETH (8865223076573 WEI).
+Invoke transaction for contract deployment was sent.
+Contract address: 0x05ecb0d7f6a32fa713c1568186dfb88392126c48332d04327e4cdea8061696d1
+Transaction hash: 0x14081aa8b720286828ff2c9207d726e585e77e6c43af3bbadd90d13ffa3aee2
+
+https://testnet.starkscan.co/contract/0x05ecb0d7f6a32fa713c1568186dfb88392126c48332d04327e4cdea8061696d1#read-write-contract
+
+**Approve** https://testnet.starkscan.co/tx/0xd6ad2a3f22e1f4f6958ae3d5ebe41bd22f8a6dd2dda9c55b6fd7bb6601fd02
+**Transfer** https://testnet.starkscan.co/tx/0x7c2785fbf695e58b67cc488aae8acf877226145866aef9f550efcf35ad794e3
+
+
+
+
+
+
+
+
+
+---
 
 ## Pragma
 Cuidado espacio en testn 
@@ -1009,79 +1104,10 @@ Invoke transaction for contract deployment was sent.
 Contract address: 0x073d297ea88a3f3b2d0528a214bc897222b243872521ae02859f2d5bd3d23f86
 Transaction hash: 0x623d8f42c2594e050f7ec92f76b3c3639e4cc62e0a6c90b7f264cf7c1824fc3
 
-
-## Votar 
-```bash
-starknet-compile Votar.cairo Votar.json
-```
-
-starknet declare --contract Votar.json --account Nadai
-
-Sending the transaction with max_fee: 0.000001 ETH (1378300314253 WEI).
-Declare transaction was sent.
-Contract class hash: 0x2ce8d6a94592d2b47da3902f8b00bd4cd5c575ffd8d0aa33cebd5dbf0eae906
-Transaction hash: 0x4d6bce29802a855a95c76595efe03681765f3bc0593c988191594240b2226d8
+---
 
 
-starknet deploy --class_hash 0x02ce8d6a94592d2b47da3902f8b00bd4cd5c575ffd8d0aa33cebd5dbf0eae906 --inputs 1795950254530259382270168937734171348535331377400385313842303804539016002736 2576485153152103101814659868666844275075629902050884189831195075733091688326 1129738685687880537468674905681849347313318001773551180695869634292384364582 --account Nadai
-
-Sending the transaction with max_fee: 0.000012 ETH (11515903420223 WEI).
-Invoke transaction for contract deployment was sent.
-Contract address: 0x07cfd595045ddbe08ce5b562f46c0d105af80794380878728634a9e8a84a7942
-Transaction hash: 0x5262b3dc24b511f1506a04fd4ef17cf0b120668bccaa282a7805022eb005320
-
-Voto1 2 3
-https://testnet.starkscan.co/tx/0x034c649a50e5befa7108e5f29ca721317bd32a17631419a0c48604e82c19450f
-
-https://testnet.starkscan.co/tx/0x03f57abbfaa3f10821fe5c133cc020d1b12c64c170d45531df73fed54eab7fc4
-
-https://testnet.starkscan.co/tx/0x012eca6a8dbc4b122ece748bb54547115bd8584cc5cafb1f83db1e6ff0be3ff9
-
-## Vote 
-
-starknet-compile Vote.cairo Vote.json
-
-starknet declare --contract Vote.json --account Nadai
-
-Sending the transaction with max_fee: 0.000001 ETH (1378300152992 WEI).
-Declare transaction was sent.
-Contract class hash: 0x44097a96f774810a4b5de39f5d046b8daee6caa4e69a8f2ae30d5af232336c3
-Transaction hash: 0x83855d89776952b1309484f2b33dda820060209c9f1207bcfca11d38def6f0
-
-starknet deploy --class_hash 0x44097a96f774810a4b5de39f5d046b8daee6caa4e69a8f2ae30d5af232336c3 --inputs 1795950254530259382270168937734171348535331377400385313842303804539016002736 2576485153152103101814659868666844275075629902050884189831195075733091688326 1129738685687880537468674905681849347313318001773551180695869634292384364582 --account Nadai
-
-Sending the transaction with max_fee: 0.000012 ETH (11515903420223 WEI).
-Invoke transaction for contract deployment was sent.
-Contract address: 0x0592de11f4e370aba47f0038b77a85343d9a8ace89dc5cc2ac3583ebf820f52d
-Transaction hash: 0x765a730af02c53267b939caff28328881d2f737b2d91d3b388e58988def0f1c
-
-## ERC20 
-```bash
-starknet-compile ERC20.cairo ERC20.json
-```
-
-```bash
-starknet declare --contract ERC20.json --account Nadai
-```
-
-Sending the transaction with max_fee: 0.000001 ETH (1387470794710 WEI).
-Declare transaction was sent.
-Contract class hash: 0x7db653c91959fd5674c1bb5b8a3938b4b14ac9ecdda9da195ac35fe65cae183
-Transaction hash: 0x48b5bb7fa8358c16cc2162fa8441b493f0bc883b146fe199a83fbf3653b6c7d
-
-```bash
-starknet deploy --class_hash 0x7db653c91959fd5674c1bb5b8a3938b4b14ac9ecdda9da195ac35fe65cae183 --inputs 336641417577 5128521 1000 0 1795950254530259382270168937734171348535331377400385313842303804539016002736 --account Nadai
-```
-
-Sending the transaction with max_fee: 0.000009 ETH (8865223076573 WEI).
-Invoke transaction for contract deployment was sent.
-Contract address: 0x05ecb0d7f6a32fa713c1568186dfb88392126c48332d04327e4cdea8061696d1
-Transaction hash: 0x14081aa8b720286828ff2c9207d726e585e77e6c43af3bbadd90d13ffa3aee2
-
-https://testnet.starkscan.co/contract/0x05ecb0d7f6a32fa713c1568186dfb88392126c48332d04327e4cdea8061696d1#read-write-contract
-
-**Approve** https://testnet.starkscan.co/tx/0xd6ad2a3f22e1f4f6958ae3d5ebe41bd22f8a6dd2dda9c55b6fd7bb6601fd02
-**Transfer** https://testnet.starkscan.co/tx/0x7c2785fbf695e58b67cc488aae8acf877226145866aef9f550efcf35ad794e3
+---
 
 ## ERC721
 ```bash
@@ -1159,16 +1185,57 @@ Si el resultado es correcto:
 En caso de error en el resultado:
 ![Foto](/Captura%20desde%202023-06-13%2023-19-26.png)
 
+Suma
+```bash
+cairo-test ./tests/suma.cairo
+```
 
+Resta
+```bash
+cairo-test ./tests/resta.cairo
+```
 
-test
+Multiplicación
+```bash
+cairo-test ./tests/multiplicacion.cairo
+```
 
-contratos de prueba
+Operaciones
+```bash
+cairo-test ./tests/operaciones.cairo
+```
 
-guias 1010
-guias 721
-guias erc20
-guias accounts
-guias bridge
+Test Individuales
+```bash
+cairo-test ./tests/operaciones.cairo -f resta
+```
 
-comadnos cli de Starknet
+Test Ignorados
+```bash
+cairo-test ./tests/operaciones_ignorar.cairo
+```
+
+Saltar Test Ignorados
+```bash
+cairo-test ./tests/operaciones_ignorar.cairo --include-ignored
+```
+
+Test Tupla
+Podremos pasar valores en booleanos o numericos pero necesitan que sea el valor correcto
+```bash
+cairo-test ./tests/tupla.cairo
+```
+
+# Starknet CLI
+```bash
+starknet get_nonce --contract_address X
+```
+
+```bash
+starknet get_transaction --hash X
+```
+
+```bash
+starknet get_full_contract --contract_address X
+```
+

@@ -221,13 +221,13 @@ Transaction hash: 0x6d169a3a0ce233f7b46546dc995bc4d6cdc779a88d768e0e4a4dc2b4e2c9
 starknet get_transaction --hash 0x44d3b2321c8b2bc2c06ff0c11cebb4fad72cc0aba9f7fe603df3ee03658d328
 ```
 
-![Graph](/imagenes/get_transaction.png)
+![Graph](//imagenes/imagenes/get_transaction.png)
 
 ```bash
 starknet get_full_contract --contract_address 0x041250c83391e1ba8701c39e8eca759525c4d34f87ccfdf5a4d6c35c5282fa5d
 ```
 
-![Graph](/imagenes/full_contract.png)
+![Graph](//imagenes/imagenes/full_contract.png)
 
 ## ICO 
 

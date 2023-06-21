@@ -9,9 +9,12 @@
 
 ## Recursos oficiales
 
-- Puede encontrar las notas originales [aquí](https://bit.ly/starkmaths2023)
-- Puede encontrar Traducciones de documentos oficiales de MATHS Starkware [aquí](https://github.com/Starknet-Es/Maths-StarknetEs/blob/main/Gu%C3%ADas%20Oficiales/Readme.md)
-- Puede encontrar Guías completas desde Starknet-Es [aquí](https://github.com/Starknet-Es/Maths-StarknetEs/blob/main/Gu%C3%ADas%20Completas/Readme.md)
+- [Starknet Doc](https://docs.starknet.io/documentation/) - Documentos oficiales de Starknet
+- [Starknet Book](https://book.starknet.io/) - Libro de Starknet
+- [Cairo Doc](https://www.cairo-lang.org/docs/) - Documentos oficiales de de Cairo
+- [Libro Cairo](https://cairo-book.github.io/) - Libro de Cairo
+- [Sintaxis Cairo by Nethermind](https://github.com/NethermindEth/CairoByExample/)  |   [Sintaxis Cairo by LambdaClass](https://github.com/lambdaclass/cairo-by-example/)
+
 
 ## Temas
 
@@ -89,7 +92,7 @@ sudo apt-get install git
 python3 --version
 ```
 
-![Foto](image-13.png)
+![Foto](/imagenes/image-13.png)
 
 ### Rust
 [Rust](https://www.rust-lang.org/tools/install) - Les recomendamos revisar el enlace proporcionado para obtener más información sobre la instalación de Rust. A continuación, se muestra el comando recomendado para la instalación de `rustup` en macOS y Linux. Si deseas utilizar otros métodos de instalación, te recomendamos consultar la documentación oficial.
@@ -104,7 +107,7 @@ Para revisar la instalación ha ido correctamente revise su versión:
 rustc --version
 ```
 
-![Foto](image-12.png)
+![Foto](/imagenes/image-12.png)
 
 En caso de dificultades anterirores también puede instalar una versión estable de Rust con los comandos:
 
@@ -148,7 +151,7 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 ```
 
-![Foto](image-9.png)
+![Foto](/imagenes/image-9.png)
 
 Reinicie su terminal y ejecute los siguientes comandos
 
@@ -166,14 +169,14 @@ pyenv activate cairo_venv
 
 Después de crear y activar el entorno virtual, debería ver (cairo_venv) en el indicador de línea de comando, lo que indica que el entorno virtual está activo, por ejemplo: `(cairo_venv) nadai@nadai:`
 
-![Foto](image-10.png)
+![Foto](/imagenes/image-10.png)
 
 Ahora puede revisar que su vesión de python si es la que hemos requerido y necesita por ahora.
 
 ```bash
 python --version
 ```
-![Foto](image-28.png)
+![Foto](/imagenes/image-28.png)
 
 ## Instale las dependencias SO:
 Antes de instalar la CLI de Starknet, debe instalar algunas dependencias específicas del sistema. Siga las instrucciones para su sistema operativo:
@@ -215,13 +218,13 @@ pip install cairo-lang
 
 Después de haber instalado la CLI de Starknet, verifique su instalación comprobando la versión, pero recuerde entrar en su entorno virtual
 
-![Foto](image-14.png)
+![Foto](/imagenes/image-14.png)
 
 ```bash
 starknet --version
 ```
 
-![Foto](image-15.png)
+![Foto](/imagenes/image-15.png)
 
 En este caso de comprobación de version puede usar `-v` o `--version`, si quiere acceder a la última version publicada revise [Cairo-Lang Releases](https://github.com/starkware-libs/cairo-lang/releases)
 
@@ -244,7 +247,7 @@ Luego, verifica la versión nuevamente:
 starknet --version
 ```
 
-![Foto](image-15.png)
+![Foto](/imagenes/image-15.png)
 
 La salida debería mostrar la versión instalada de Starknet CLI. Asegúrate de que la versión coincida con la última versión publicada.
 
@@ -283,7 +286,7 @@ Actualiza tu archivo .bashrc o .zshrc para agregar los binarios de Cairo a tu va
 export PATH="$HOME/.cairo/target/release:$PATH"
 ```
 
-![Foto](image-16.png)
+![Foto](/imagenes/image-16.png)
 
 Abre una nueva terminal y verifica que el siguiente comando devuelva un número de versión:
 
@@ -291,7 +294,7 @@ Abre una nueva terminal y verifica que el siguiente comando devuelva un número 
 cairo-compile --version
 ```
 
-![Foto](image-17.png)
+![Foto](/imagenes/image-17.png)
 
 ## Actualizar Compilador Cairo
 
@@ -306,7 +309,7 @@ cd ~/.cairo
 ```bash
 git fetch
 ```
-![Foto](image-18.png)
+![Foto](/imagenes/image-18.png)
 
 3. Cambia a la etiqueta más reciente
 ```bash
@@ -314,7 +317,7 @@ git checkout tags/v2.0.0-rc4
 cargo build --all --release
 ```
 
-![Foto](image-19.png)
+![Foto](/imagenes/image-19.png)
 
 4. Abre una nueva terminal y verifica que tengas la versión deseada:
 
@@ -322,7 +325,7 @@ cargo build --all --release
 cairo-compile --version
 ```
 
-![Foto](image-20.png)
+![Foto](/imagenes/image-20.png)
 
 Ahora tenemos nuestro cairo-compile listo en la última versiíon disponible, no significa que sea la más estable, a día 21-06-2023 no se ha lanzado la 0.12, la cual será necesaria para poder compilar nuestro contratos y desplegar de la versión del cimpilador 2.X, en este caso vemos que es la `v2.0.0-rc4`
 
@@ -333,11 +336,11 @@ git checkout tags/v1.1.0
 cargo build --all --release
 ``` 
 
-![Foto](image-21.png)
+![Foto](/imagenes/image-21.png)
 
 Ahora puedes volver a comprobar tu versión y ya tienes configurado tu entorno de desarrollo local para Starknet. Ahora puedes comenzar a construir, implementar e interactuar con contratos inteligentes en Cairo.
 
-![Foto](image-22.png)
+![Foto](/imagenes/image-22.png)
 
 ---
 
@@ -360,17 +363,17 @@ Antes de continuar, asegúrate de tener los siguientes requisitos previos instal
 
 - [Docker](https://www.docker.com/)
 
-## Descargar la imagen de Docker
-El primer paso es descargar la imagen de Docker que contiene las herramientas necesarias para el desarrollo de Starknet. Ejecuta el siguiente comando en tu terminal:
+## Descargar la /imagenes/imagen de Docker
+El primer paso es descargar la /imagenes/imagen de Docker que contiene las herramientas necesarias para el desarrollo de Starknet. Ejecuta el siguiente comando en tu terminal:
 
 ```bash
 docker pull artudev19/cairo-env:latest
 ```
 
-Este comando descarga la imagen de Docker de Starknet.
+Este comando descarga la /imagenes/imagen de Docker de Starknet.
 
 ## Ejecutar el contenedor de Docker
-Para ejecutar un contenedor a partir de la imagen, ejecuta el comando `docker run`. Para mantener cierta información persistente, utiliza un volumen pasando la opción `-v from_host_path:to_container_path`. Esto reflejará el contenido de `from_host_path` dentro del contenedor. Si especificas una ruta en el contenedor que no existe, Docker la creará automáticamente.
+Para ejecutar un contenedor a partir de la /imagenes/imagen, ejecuta el comando `docker run`. Para mantener cierta información persistente, utiliza un volumen pasando la opción `-v from_host_path:to_container_path`. Esto reflejará el contenido de `from_host_path` dentro del contenedor. Si especificas una ruta en el contenedor que no existe, Docker la creará automáticamente.
 
 ```bash
 docker run -it --name stark-env -v /Desktop/stark-apps/contracts:/contracts artudev19/cairo-env:latest
@@ -501,7 +504,7 @@ cairo-compile --version
 starknet-compile --version
 ```
 
-![Foto](image-29.png)
+![Foto](/imagenes/image-29.png)
 
 ---
 
@@ -512,7 +515,7 @@ Ahora, si creamos un contrato de prueba, veremos que la sintaxis no es reconocid
 
 Pero ya tenemos disponible la extensión de Cairo 1 para VS Code. Para configurarla, primero debemos descargarla e instalarla buscando `Cairo1` de StarkWare y haciendo clic en `install`.
 
-![Foto](image-23.png)
+![Foto](/imagenes/image-23.png)
 
 También es posible que necesite reconstruir su `cairo-language-server`. Para hacerlo, vaya a la ubicación de instalación de Cairo y ejecute:
 
@@ -521,16 +524,16 @@ cd .cairo
 cargo build --bin cairo-language-server --release
 ```
 
-![Foto](image-27.png)
+![Foto](/imagenes/image-27.png)
 
 Una vez instalada, iremos a los ajustes para agregar la ruta de nuestro `cairo-language-server`, que se encuentra dentro de la ruta `/home/nadai/.cairo/target/release/cairo-language-server`. Deberá buscar su ruta exacta y reemplazar esta.
 
-![Foto](image-26.png)
+![Foto](/imagenes/image-26.png)
 
 Luego, deberá pegar la ruta en los ajustes de su Extensión instalada del `Cairo-languague-server` que encontró en `/path/cairo/target/release/cairo-language-server` (sustituir usuario y revisar ruta de instalación). Una vez copiado y establecido, deberá recargar con F5 su Visual Studio y ya debería estar activo. Si no es así, cierre y abra para volver a visualizarlo.
 
-![Foto](image-24.png)
-![Foto](image-25.png)
+![Foto](/imagenes/image-24.png)
+![Foto](/imagenes/image-25.png)
 
 Ahora su contrato de Cairo 1 debería ser reconocido con la sintaxis de la versión que haya configurado.
 
@@ -588,7 +591,7 @@ Aunque normalmente los errores comunes en estos casos son al volver a iniciar se
 Error: AssertionError: A wallet must be specified (using --wallet or the STARKNET_WALLET environment variable), unless specifically using --no_wallet.
 ```
 
-![Alt text](image-30.png)
+![Alt text](/imagenes/image-30.png)
 
 
 ```bash
@@ -597,7 +600,7 @@ Error: Exception: feeder_gateway_url must be specified with the "declare" subcom
 Consider passing --network or setting the STARKNET_NETWORK environment variable.
 ```
 
-![Alt text](image-31.png)
+![Alt text](/imagenes/image-31.png)
 
 Ambos se deben a la falta de exportar `STARKNET_NETWORK` y `STARKNET_WALLET` se soluciona pasando de nuevo los comandos:
 
@@ -623,7 +626,7 @@ Las cuentas de Starknet declaradas a través de la CLI se almacenan en tu máqui
 
 Para poder visualizar estas carpeta ocultas en los SO, en ubuntu bastará con tocar `Crtl+H` y os aparecerán estas carpetas, como `.cairo`, es decir todas con `.` estás ocultas.
 
-![Alt text](image-32.png)
+![Alt text](/imagenes/image-32.png)
 
 ## Crear una nueva cuenta
 En este paso emepzaremos a crear nuestra nueva cuenta que inicialmente solo será calculada veamos, de hecho, podemos hacerlo sin concción a internet ya que sólo será el procedimiento de generar nuesta Private y Public Key:
@@ -634,19 +637,19 @@ starknet new_account --account NadaiTest
 
 Tu terminal devolverá la dirección de tu cuenta.
 
-![Alt text](image-33.png)
+![Alt text](/imagenes/image-33.png)
 
 Y podremos comprobar en nuestro archivo `starknet_open_zeppelin_accounts.json` que nuestra nueva ya aparece con un estado de `false` (aun no ha sido desplegado)
 
-![Alt text](image-34.png)
+![Alt text](/imagenes/image-34.png)
 
 Pero si nos detecta aunque estemos `sin conección a la red` la cuenta creada, por lo que si pasamos el mismo comando nos daría el siguiente error
 
-![Alt text](image-35.png)
+![Alt text](/imagenes/image-35.png)
 
 Pero ¿Qué pasaría si borramos nuestra cuenta que ha sido calculada pero no desplegada?¿Nos daría los mismo valores? Vamos a probar, borremos la cuetna que aún no ha sido desplegada
 
-![Alt text](image-36.png)
+![Alt text](/imagenes/image-36.png)
 
 - Account address: 0x03175cdd79fe7cc981a7876ee19fd9aadc5c36b12a1534fe730857b7d0d3a330
 
@@ -656,7 +659,7 @@ Y volvemos a correr el comando para desplegar nuestra cuenta que antes no s daba
 starknet new_account --account NadaiTest
 ```
 
-![Alt text](image-37.png)
+![Alt text](/imagenes/image-37.png)
 
 Vemos como se ha generado una cuenta, una private key, public key completamente nueva asociado a nuestro nombre.
 
@@ -673,11 +676,11 @@ Ahora necesitamos tener fondos en esa cuenta que ha sido sólo calculda, moverem
 
 En este caso usamos faucet
 
-![Alt text](image-40.png)
+![Alt text](/imagenes/image-40.png)
 
 Sin importar cómo lo hagas, asegúrate de que la transacción de financiación alcance el estado `PENDING` antes de continuar. Puedes verificarlo en [Starkscan](https://testnet.starkscan.co/), [Voyager](https://goerli.voyager.online/) o como aprenderemos en este caso a directamente con la CLI, y comprobar como nuestro estado de despliegue pasa de `false` a `true`
 
-![Alt text](image-39.png)
+![Alt text](/imagenes/image-39.png)
 
 El hash de la [transacción del faucet](https://testnet.starkscan.co/tx/0x7438cc6d5a5cd40b64c6cc7684ad054ce682e236da48534c8411626378f4e3d#overview)) será el que usemos para ver el estado de nuestro envio de saldo para poder desplegar, también puede hacerlo desde los explodaroes mencionados
 
@@ -685,7 +688,7 @@ El hash de la [transacción del faucet](https://testnet.starkscan.co/tx/0x7438cc
 starknet get_transaction --hash 0x7438cc6d5a5cd40b64c6cc7684ad054ce682e236da48534c8411626378f4e3d
 ```
 
-![Alt text](image-38.png)
+![Alt text](/imagenes/image-38.png)
 
 En este caso vemos que ya ha sido aceptada en L2 `ACCEPTED_ON_L2`, asi que procedamos a desplegar la cuenta
 
@@ -699,11 +702,11 @@ starknet deploy_account --account NadaiTest
 
 Tu resultado de muestra debería verse algo así:
 
-![Alt text](image-41.png)
+![Alt text](/imagenes/image-41.png)
 
 Y ya podriamos comprobar que nuesto estado de cuenta ha cambiado `true` y ya definitivamente se encuentra desplegado.
 
-![Alt text](image-42.png)
+![Alt text](/imagenes/image-42.png)
 
 * [Hash NadaiTest](https://testnet.starkscan.co/contract/0x053e688af06f4d763213a165bca6811cdd603e031922a13e10819c2be8d3fc1c)
 
@@ -713,7 +716,7 @@ Como ultima comprobación antes de empezar con nuestro Contratos de Cairo 1, vea
 starknet get_nonce --contract_address 0x053e688af06f4d763213a165bca6811cdd603e031922a13e10819c2be8d3fc1c
 ```
 
-![Alt text](image-43.png)
+![Alt text](/imagenes/image-43.png)
 
 
 ## Compilar
@@ -736,7 +739,7 @@ Ahora procederemos a compilar nuestro contrato de prueba [Hola.cairo](/src/Hola.
 starknet-compile Hola.cairo Hola.json
 ```
 
-![Alt text](image-44.png)
+![Alt text](/imagenes/image-44.png)
 
 ## Declaración
 Los contratos en Starknet tiene la ventaja de poder ser declarados en la red una vez y luego sólo desplegar, veremos posterior como no puede declararse dos contratos iguales. En Starknet, el proceso de implementación consta de dos pasos:
@@ -749,7 +752,7 @@ Comencemos con la declaración del código anterior.
 ```bash
 starknet declare --contract Hola.json --account NadaiTest
 ```
-![Alt text](image-45.png)
+![Alt text](/imagenes/image-45.png)
 
 * [Link Transacción Declare Class Hass](https://testnet.starkscan.co/class/0x610a4a6c84d011ca0013b9df30014ef978b0c9307d23fea2821d13fe4c1035d)
 
@@ -759,11 +762,11 @@ Una vez su declaración haya sido aceptada ya su class hash aparecerá en el exp
 starknet get_transaction --hash 0x610a4a6c84d011ca0013b9df30014ef978b0c9307d23fea2821d13fe4c1035d
 ```
 
-![Alt text](image-46.png)
+![Alt text](/imagenes/image-46.png)
 
 Desde el explorador podemos comprobar que aún no se ha desplegado ningún contrato usando esta declaración
 
-![Alt text](image-47.png)
+![Alt text](/imagenes/image-47.png)
 
 ## Despliegue
 El hash de transacción le permite rastrear cuándo la red habrá recibido el código de su contrato. Una vez que esta transacción pase a `PENDING` (pendiente), puede implementar una instancia de su contrato.
@@ -776,7 +779,7 @@ Así que para desplegar su primer contrato en Cairo 1, de una ejemplo sencillo s
 starknet deploy --class_hash 0x225786c0dcc2d62487f3bab0df7685563f1a37e04562ea4d4b94c350f74002  --account NadaiTest
 ```
 
-![Alt text](image-48.png)
+![Alt text](/imagenes/image-48.png)
 
 - [Contract Hola](https://testnet.starkscan.co/contract/0x06383a164125316277fb4ce86bd20d61a82d74ab73d695cf1f8d4c1ac3d40ecb#read-write-contract)
 
@@ -785,11 +788,11 @@ Si todo ha ido bien ya podra revisar su contrato, puede revisar esta implentaci�
 - Mensaje = Starknet La Mejor L2 😜
 - Felt = 523853089324632803106236192193517396970156379196793374498332
 
-![Alt text](image-49.png)
+![Alt text](/imagenes/image-49.png)
 
 Podríamos directamente al explorador y contrato que hemos desplegado, conectar nuestra cuenta de `ArgentX` o `Braavos` que queramos y dejar nuestro mensaje a `Hola_Starknianos_Dice`.
 
-![Alt text](image-50.png)
+![Alt text](/imagenes/image-50.png)
 
 ## Intercatuar
 Esta vez vamos hacer un `invoke` de la transacción desde la CLI. La sintaxis para invocar una función en su contrato es la siguiente:
@@ -804,14 +807,14 @@ En nuestro caso añadimos la dirección del contrato que acabamos de desplegar `
 starknet invoke --function Hola_Starknianos_Dice --address 0x06383a164125316277fb4ce86bd20d61a82d74ab73d695cf1f8d4c1ac3d40ecb --input 523853089324632803106236192193517396970156379196793374498332 --account NadaiTest
 ```
 
-![Alt text](image-51.png)
+![Alt text](/imagenes/image-51.png)
 
 Ahora podrá revisar en el explorador el evento y el mensaje que hemos dejado, en este caso:
 
 - [Hash mensaje](https://testnet.starkscan.co/tx/0x048e937dccd2af467feda07a83cb6c658ab13804857f7eda4a6218e7df0891ea)
 - [Eventos](https://testnet.starkscan.co/contract/0x06383a164125316277fb4ce86bd20d61a82d74ab73d695cf1f8d4c1ac3d40ecb#events)
 
-![Alt text](image-52.png)
+![Alt text](/imagenes/image-52.png)
 
 ---
 

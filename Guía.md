@@ -43,7 +43,7 @@
     - [Desinstalación](#desinstalación)
     - [Versiones](#versiones)
 - [VS Code](#vs-code)
-- [Desplegando Contratos en Starknet]
+- [Despliegue de contratos Starknet](#despliegue-de-contratos-starknet)
     - [Configuración de variables de entorno](#configuración-de-variables-de-entorno)
     - [Configuración de una cuenta](#configuración-de-una-cuenta)
     - [Crear una nueva cuenta](#crear-una-nueva-cuenta)

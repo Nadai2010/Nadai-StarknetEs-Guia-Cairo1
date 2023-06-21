@@ -98,7 +98,7 @@
     "0x72656e616d65",
     "0x14",
     "0x1e",
-    "0x3002a79efa159b4e79f9cb7673837e2ab043bc57fddcd94c4529d2add904801",
+    "0xd72beb4bd8117253d41e6075451e4c62e8f4cb6538536ef1fc13333c7a4085",
     "0x647570",
     "0x656d69745f6576656e745f73797363616c6c",
     "0x1f",
@@ -320,7 +320,7 @@
   "entry_points_by_type": {
     "EXTERNAL": [
       {
-        "selector": "0x270e335b27902ce21b24a7556e0c63bf2c1a331f8d7622fcf8cfaea1afacad0",
+        "selector": "0x174b547a4b2690f94709783f000ec9f2b41664dfbd3d4105dee04c14d539d2a",
         "function_idx": 0
       }
     ],
@@ -330,7 +330,7 @@
   "abi": [
     {
       "type": "function",
-      "name": "Say_Hello",
+      "name": "Hola_Starknianos_Dice",
       "inputs": [
         {
           "name": "message",
@@ -342,7 +342,21 @@
     },
     {
       "type": "event",
-      "name": "HolaHola",
+      "name": "Hola",
+      "inputs": [
+        {
+          "name": "from",
+          "type": "core::starknet::contract_address::ContractAddress"
+        },
+        {
+          "name": "value",
+          "type": "core::felt252"
+        }
+      ]
+    },
+    {
+      "type": "event",
+      "name": "Evento_Starknet_Es",
       "inputs": [
         {
           "name": "from",

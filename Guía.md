@@ -49,9 +49,13 @@
     - [Crear una nueva cuenta](#crear-una-nueva-cuenta)
     - [Financiar Cuenta](#finanzciar-cuenta)
     - [Desplegar Cuenta](#desplegar-cuenta)
+    - [Compilar](#compilar)
+    - [Declaración](#declaración)
+    - [Despliegue](#despliegue)
+    - [Interactuar](#intercatuar)
 
 
-# Guía Definitiva de Starknet-Es Cairo 1
+---
 
 ## Configuración de su entorno de desarrollo de Starknet
 Desde Starknet Español le guiamos a través de la configuración de su entorno de desarrollo para Cairo y Starknet. El objetivo es proporcionarle las herramientas necesarias para construir, implementar e interactuar con contratos inteligentes de Cairo en la red de Starknet. Instalaremos el compilador de Cairo, una herramienta fundamental para esta tarea, y la Interfaz de Línea de Comandos (CLI) de Starknet, una utilidad para interactuar con la red de Starknet.
@@ -62,10 +66,10 @@ Desde Starknet Español le guiamos a través de la configuración de su entorno 
 
 El proceso de configuración se puede realizar a través de dos métodos diferentes: configurar un entorno de desarrollo local o utilizar un contenedor de Docker. 
 
-### Pre-requisitos
+## Pre-requisitos
 Antes de continuar, asegúrese de tener instalados los siguientes pre-requisitos en su sistema:
 
-## Git
+### Git
 [Git:](https://git-scm.com/) Será necesario tener `Git` instalado. A continuación, se muestra el comando para instalar `Git` en Ubuntu. Recuerda verificar las versiones disponibles para tu sistema operativo en el enlace proporcionado:
 
 ```bash
@@ -78,7 +82,7 @@ Si se produce un error y te solicita entrar como administrador, agrega `sudo` al
 sudo apt-get install git
 ```
 
-## Python3.9
+### Python3.9
 [Python 3.9](https://www.python.org/downloads/release/python-390/) - Primero revise la versión que se encuentra en siu sitema operativo, si ya de serie dispone una versión posterior en Linux por ejemplo, no hacer nada ya luego ajustamos con entornos virtuales, revise su versión:
 
 ```bash
@@ -87,7 +91,7 @@ python3 --version
 
 ![Foto](image-13.png)
 
-## Rust
+### Rust
 [Rust](https://www.rust-lang.org/tools/install) - Les recomendamos revisar el enlace proporcionado para obtener más información sobre la instalación de Rust. A continuación, se muestra el comando recomendado para la instalación de `rustup` en macOS y Linux. Si deseas utilizar otros métodos de instalación, te recomendamos consultar la documentación oficial.
 
 ```bash
@@ -107,6 +111,8 @@ En caso de dificultades anterirores también puede instalar una versión estable
 ```bash
 rustup override set stable && rustup update
 ```
+
+---
 
 ## Instalación de la CLI de Starknet
 Para instalar la CLI de Starknet, siga estos pasos:
@@ -190,6 +196,8 @@ pip install ecdsa fastecdsa sympy
 
 Estos paquetes de Python proporcionan funcionalidad criptográfica y matemática necesaria para la CLI de Starknet.
 
+---
+
 ## Instale la CLI de Starknet:
 Ahora que ha configurado el entorno e instalado las dependencias, puede instalar la CLI de Starknet. Siga estos pasos:
 
@@ -245,6 +253,8 @@ Para actualizar a la última versión de Starknet CLI, ejecuta el siguiente coma
 ```bash
 pip install cairo-lang --upgrade
 ```
+
+---
 
 ## Instalación del compilador Cairo
 Para instalar el compilador Cairo, sigue estos pasos:
@@ -329,6 +339,8 @@ Ahora puedes volver a comprobar tu versión y ya tienes configurado tu entorno d
 
 ![Foto](image-22.png)
 
+---
+
 # Configuración de Docker para el desarrollo de Starknet
 El uso de un entorno Docker para el desarrollo de Starknet ofrece varias ventajas en comparación con la configuración del entorno de desarrollo de forma local. Estas ventajas incluyen:
 
@@ -376,7 +388,9 @@ cairo-compile --version
 
 La salida debería mostrar la versión instalada de Starknet CLI y el compilador Cairo. Asegúrate de que las versiones coincidan con la última versión
 
-## Instalación de Cairo con un script (Instalador por Fran)
+---
+
+# Instalación de Cairo con un script (Instalador por Fran)
 Como último metodo de instalación seguiremos el script de Fran. Si deseas instalar una versión específica de Cairo en lugar de la última versión, establece la variable de entorno `CAIRO_GIT_TAG` (por ejemplo, exporta `CAIRO_GIT_TAG=v1.1.0`), corra el siguiente comando:
 
 ```bash
@@ -489,7 +503,9 @@ starknet-compile --version
 
 ![Foto](image-29.png)
 
-## VS Code 
+---
+
+# VS Code 
 Ahora, si creamos un contrato de prueba, veremos que la sintaxis no es reconocida por nuestro programa de VS Code.
 
 ![Gráfico](/vscode.png)
@@ -521,6 +537,8 @@ Ahora su contrato de Cairo 1 debería ser reconocido con la sintaxis de la versi
 ![Gráfico](/vscode1.png)
 
 Puede seguir nuevas actualizaciones y configuraciones desde el link oifcial de [StarkWare VS-Code](https://github.com/starkware-libs/cairo/blob/main/vscode-cairo/README.md)
+
+---
 
 # Despliegue de contratos Starknet
 Ahora veremos como crear una contrato de cuenta, como se controlan estas cuentas, compilar, declarar, desplegar e interactuar con los Contracts que tenemos en Cairo 1.
@@ -698,13 +716,128 @@ starknet get_nonce --contract_address 0x053e688af06f4d763213a165bca6811cdd603e03
 ![Alt text](image-43.png)
 
 
-ciclo de saldo en cuenta
+## Compilar
+Para compilar nuestros Contratos de Cairo 1, primero crearemos en nuestro proyecto una carpeta para añadir los contratos `src` así que si ha clonado este repo, primero ejecute:
 
-aprender a compilar
+```bash
+cd src
+```
 
-aprender a declarar
+Ahora se encotrará en la carpeta de Contratos, primero personalice el contrato que usaremos de prueba [Hola.cairo](/src/Hola.cairo) y agregaremos un nuevo tipo de evento. Encuentre un nombre que sea único (esto es importante). Agregue el siguiente código:
 
-aprender a desplegar
+```cairo
+#[event]
+fn Escoga_Evento_Unico(from:ContractAddress, value:felt252) {}
+```
+
+Ahora procederemos a compilar nuestro contrato de prueba [Hola.cairo](/src/Hola.cairo), el cual nos generará si todo va bien el archivo `.json` necesario para los siguientes paso, primero añadimos el comando, seguido del nombre del contrato que queremos compilar y el nombre de salida a `.json`
+
+```bash
+starknet-compile Hola.cairo Hola.json
+```
+
+![Alt text](image-44.png)
+
+## Declaración
+Los contratos en Starknet tiene la ventaja de poder ser declarados en la red una vez y luego sólo desplegar, veremos posterior como no puede declararse dos contratos iguales. En Starknet, el proceso de implementación consta de dos pasos:
+
+* Declarar la clase de su contrato o enviar el código de su contrato a la red.
+* Implementar un contrato o crear una instancia del código que declaró anteriormente.
+
+Comencemos con la declaración del código anterior.
+
+```bash
+starknet declare --contract Hola.json --account NadaiTest
+```
+![Alt text](image-45.png)
+
+* [Link Transacción Declare Class Hass](https://testnet.starkscan.co/class/0x610a4a6c84d011ca0013b9df30014ef978b0c9307d23fea2821d13fe4c1035d)
+
+Una vez su declaración haya sido aceptada ya su class hash aparecerá en el explorador, puede revisar el estado con el comando:
+
+```bash
+starknet get_transaction --hash 0x610a4a6c84d011ca0013b9df30014ef978b0c9307d23fea2821d13fe4c1035d
+```
+
+![Alt text](image-46.png)
+
+Desde el explorador podemos comprobar que aún no se ha desplegado ningún contrato usando esta declaración
+
+![Alt text](image-47.png)
+
+## Despliegue
+El hash de transacción le permite rastrear cuándo la red habrá recibido el código de su contrato. Una vez que esta transacción pase a `PENDING` (pendiente), puede implementar una instancia de su contrato.
+
+Utilizando el `class hash` generado anteriormente, implemente el contrato. Si encuentra algún problema relacionado con las tarifas, agregue el indicador `--max_fee 100000000000000000` a sus comandos de CLI para establecer un límite de gas arbitrariamente alto para su transacción de implementación.
+
+Así que para desplegar su primer contrato en Cairo 1, de una ejemplo sencillo sin `inputs` corra el comando:
+
+```bash
+starknet deploy --class_hash 0x225786c0dcc2d62487f3bab0df7685563f1a37e04562ea4d4b94c350f74002  --account NadaiTest
+```
+
+![Alt text](image-48.png)
+
+- [Contract Hola](https://testnet.starkscan.co/contract/0x06383a164125316277fb4ce86bd20d61a82d74ab73d695cf1f8d4c1ac3d40ecb#read-write-contract)
+
+Si todo ha ido bien ya podra revisar su contrato, puede revisar esta implentación y dejar su mensaje de bienvenida, pero para ello primero deberá de usar un convertidor a `felt`, en esta caso usamos [Stark-Utils](https://www.stark-utils.xyz/converter) y el mensaje que querenmos convertir.
+
+- Mensaje = Starknet La Mejor L2 😜
+- Felt = 523853089324632803106236192193517396970156379196793374498332
+
+![Alt text](image-49.png)
+
+Podríamos directamente al explorador y contrato que hemos desplegado, conectar nuestra cuenta de `ArgentX` o `Braavos` que queramos y dejar nuestro mensaje a `Hola_Starknianos_Dice`.
+
+![Alt text](image-50.png)
+
+## Intercatuar
+Esta vez vamos hacer un `invoke` de la transacción desde la CLI. La sintaxis para invocar una función en su contrato es la siguiente:
+
+```bash
+starknet invoke --function <nombre de la función> --address <dirección del contrato implementado> --account <nombre_de_cuenta>
+```
+
+En nuestro caso añadimos la dirección del contrato que acabamos de desplegar `0x06383a164125316277fb4ce86bd20d61a82d74ab73d695cf1f8d4c1ac3d40ecb` las input, que han sido el saludo convertido a felt `523853089324632803106236192193517396970156379196793374498332` y nuestra cuenta de test `NadaiTest`
+
+```bash
+starknet invoke --function Hola_Starknianos_Dice --address 0x06383a164125316277fb4ce86bd20d61a82d74ab73d695cf1f8d4c1ac3d40ecb --input 523853089324632803106236192193517396970156379196793374498332 --account NadaiTest
+```
+
+![Alt text](image-51.png)
+
+Ahora podrá revisar en el explorador el evento y el mensaje que hemos dejado, en este caso:
+
+- [Hash mensaje](https://testnet.starkscan.co/tx/0x048e937dccd2af467feda07a83cb6c658ab13804857f7eda4a6218e7df0891ea)
+- [Eventos](https://testnet.starkscan.co/contract/0x06383a164125316277fb4ce86bd20d61a82d74ab73d695cf1f8d4c1ac3d40ecb#events)
+
+![Alt text](image-52.png)
+
+---
+
+# Test
+Si queremos ver el potencial que trae Cairo incorporado, es la facilidad y capacidad de pasar test, para ello primero iremos a la carpeta `tests` que tenemos con algunos ejemplos, aunque también puede hacer desde la raíz del proyecto y se marcan para identificar que son pruebas con `#[cfg(test)]`
+
+* [Suma](/tests/suma.cairo)
+
+
+```bash
+cairo-test suma.cairo
+```
+
+o
+
+```bash
+cairo-test ./tests/suma.cairo
+```
+
+Si el resultado es correcto:
+![Foto](/Captura%20desde%202023-06-13%2022-23-15.png)
+
+En caso de error en el resultado:
+![Foto](/Captura%20desde%202023-06-13%2023-19-26.png)
+
+
 
 test
 

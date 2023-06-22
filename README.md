@@ -1265,43 +1265,226 @@ En caso de error en el resultado imprimirá el mensaje anterior
 
 ---
 
+* [Resta](/tests/resta.cairo)
 
 
-Resta
+```bash
+cairo-test resta.cairo
+```
+
+o
+
 ```bash
 cairo-test ./tests/resta.cairo
 ```
 
-Multiplicación
+Si el resultado es correcto:
+
+<div align="left">
+<img src="imagenes/resta1.png" width="300">
+</div>
+
+---
+
+* [Multiplicación](/tests/multiplicacion.cairo)
+
+```bash
+cairo-test multiplicacion.cairo
+```
+
+o
+
 ```bash
 cairo-test ./tests/multiplicacion.cairo
 ```
 
-Operaciones
+Si el resultado es correcto:
+
+<div align="left">
+<img src="imagenes/image-64.png" width="300">
+</div>
+
+
+* [Operaciones](/tests/operaciones.cairo)
+
+```bash
+cairo-test operaciones.cairo
+```
+
+o
+
 ```bash
 cairo-test ./tests/operaciones.cairo
 ```
 
-Test Individuales
+Si el resultado es correcto mostrará todas las operaciones han pasado la prueba, en este caso `suma`, `resta` y `mutliplicación`:
+
+<div align="left">
+<img src="imagenes/operaciones1.png" width="300">
+</div>
+
+
+**Test Individuales**
+En este caso haremos la prueba solo de la resta, omitiendo el resto de operaciones de nuestro contrato [Operaciones.cairo](/tests/operaciones.cairo)
+
+```bash
+cairo-test operaciones.cairo -f resta
+```
+
+o
+
 ```bash
 cairo-test ./tests/operaciones.cairo -f resta
 ```
 
-Test Ignorados
+Si todo ha ido bien, el resultado mostrará sólo la prueba de la `resta`, en este caso ha sido correcta.
+
+<div align="left">
+<img src="imagenes/operacionesresta.png" width="300">
+</div>
+
+* [Test Ignorados](/tests/operaciones_ignorar.cairo)
+En este contrato de [Operaciones_Ignorar.cairo](/tests/operaciones_ignorar.cairo) hemos añadido `#[ignore]` a la oeperación que vamos a ignorar.
+
+```bash
+    #[test]
+    #[ignore]
+    fn resta() {
+        let result = 2 - 2;
+        assert(result == 0, 'El resultado no es 0');
+    }
+```
+
+Corremos nuestro test con el comando normal:
+
+
+```bash
+cairo-test operaciones_ignorar.cairo
+```
+
+o
+
 ```bash
 cairo-test ./tests/operaciones_ignorar.cairo
 ```
 
-Saltar Test Ignorados
+Si todo ha ido bien, el resultado mostrará todas las pruebas restantes, en este caso la `suma` y `multiplicación` han pasado la prueba, mientras que la `resta` ha sido `ignored`
+
+<div align="left">
+<img src="imagenes/operacionignorar.png" width="300">
+</div>
+
+**Saltar Test Ignorados**
+Si ahora quiere pasar la prueba completa al mismo contrato [Operaciones_Ignorar.cairo](/tests/operaciones_ignorar.cairo), no deberá de corregir su contrato, sólo añadir en su comando que incluya los ignorados `--include-ignored`
+
+```bash
+cairo-test operaciones_ignorar.cairo --include-ignored
+```
+
+o
+
 ```bash
 cairo-test ./tests/operaciones_ignorar.cairo --include-ignored
 ```
 
-Test Tupla
-Podremos pasar valores en booleanos o numericos pero necesitan que sea el valor correcto
+Si todo ha ido bien, el resultado mostrará todas las pruebas, en este caso la `suma`, `resta` y `multiplicación` han pasado la prueba, saltándose la restricción del `ignored`
+
+<div align="left">
+<img src="imagenes/operacionignorar1.png" width="300">
+</div>
+
+----
+
+* [Test Tupla](/tests/tupla.cairo)
+Primero veamos un test sencillo de una tupla en Cairo, en la que podremos pasar valores en booleanos o numéricos, pero necesitan que sea el valor correcto `y == 5` en este caso como única comprobación.
+
+<div align="left">
+<img src="imagenes/operacionignorar1.png" width="300">
+</div>
+
+Corremos los comandos:
+
+```bash
+cairo-test tupla.cairo
+```
+
+o
+
 ```bash
 cairo-test ./tests/tupla.cairo
 ```
+
+Si todo ha ido bien, el resultado mostrará como la prueba ha sido pasada con el valor `5`
+
+<div align="left">
+<img src="imagenes/operacionignorar1.png" width="300">
+</div>
+
+Ahora si cambiamos el valor de la `y` como la imágen a continuación nos saldrá un mensaje de `panicked` con la advertencia de `El resultado no es 5` 
+
+<div align="left">
+<img src="imagenes/image-65.png" width="300">
+</div>
+
+<div align="left">
+<img src="imagenes/image-66.png" width="300">
+</div>
+
+**NOTA CURIOSA** Todo es Felt, en este caso `396331670188477403133841500287902044638256767029` mensaje de error de panicked es `El resultado no es 5`
+
+<div align="left">
+<img src="imagenes/image-67.png" width="300">
+</div>
+
+---
+
+
+* [Test Tupla Multiple](/tests/tupla_multiple.cairo)
+Ahora veremos un test de una tupla múltiple en Cairo, en la que podremos pasar valores en booleanos o numéricos, pero necesitan que sea el valor correcto, en este caso con `x == 500` , `y == 5` y `z == true`, primero pasaremos el test con los resultados correctos.
+
+<div align="left">
+<img src="imagenes/tuplamulti1.png" width="300">
+</div>
+
+Corremos los comandos:
+
+```bash
+cairo-test tupla_multiple.cairo
+```
+
+o
+
+```bash
+cairo-test ./tests/tupla_multiple.cairo
+```
+
+Si todo ha ido bien, el resultado mostrará como la prueba ha sido pasada correctamente.
+
+<div align="left">
+<img src="imagenes/tuplamulti.png" width="300">
+</div>
+
+Ahora si cambiamos el valor de la `y` como la imágen a continuación nos saldrá un mensaje de `panicked` con la advertencia de `El resultado no es 5`, como el test anterior o podemos cambiar los 3 valores incorrectos y ver que pasa.
+
+<div align="left">
+<img src="imagenes/error.png" width="300">
+</div>
+
+<div align="left">
+<img src="imagenes/error500.png" width="300">
+</div>
+
+Vemos como se detiene en el primer error, probamos a corregir a `x == 500`
+
+<div align="left">
+<img src="imagenes/error5.png" width="300">
+</div>
+
+
+Vemos que ahora no ha pasado del segundo en este caso `y == 5`, así que podemos ver el gran poder de **TEST EN CAIRO** que nos encontramos, recuerden las notas y repasar resto de test.
+
+**NOTA CURIOSA** Todo es Felt, en este caso `396331670188477403133841500287902044638256767029` mensaje de error de panicked es `El resultado no es 5`
+
 
 ---
 

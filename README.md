@@ -1259,7 +1259,7 @@ Vemos el error que hemos definido en el contract [suma.cairo](/tests/suma.cairo#
 En caso de error en el resultado imprimirá el mensaje anterior
 
 <div align="left">
-<img src="imagenes/suma2.png" width="300">
+<img src="imagenes/suma2.png" width="500">
 </div>
 
 
@@ -1340,7 +1340,7 @@ cairo-test ./tests/operaciones.cairo -f resta
 Si todo ha ido bien, el resultado mostrará sólo la prueba de la `resta`, en este caso ha sido correcta.
 
 <div align="left">
-<img src="imagenes/operacionesresta.png" width="300">
+<img src="imagenes/operacionresta.png" width="300">
 </div>
 
 * [Test Ignorados](/tests/operaciones_ignorar.cairo)
@@ -1427,7 +1427,7 @@ Ahora si cambiamos el valor de la `y` como la imágen a continuación nos saldr�
 </div>
 
 <div align="left">
-<img src="imagenes/image-66.png" width="300">
+<img src="imagenes/image-66.png" width="500">
 </div>
 
 **NOTA CURIOSA** Todo es Felt, en este caso `396331670188477403133841500287902044638256767029` mensaje de error de panicked es `El resultado no es 5`
@@ -1471,13 +1471,13 @@ Ahora si cambiamos el valor de la `y` como la imágen a continuación nos saldr�
 </div>
 
 <div align="left">
-<img src="imagenes/error500.png" width="300">
+<img src="imagenes/error500.png" width="500">
 </div>
 
 Vemos como se detiene en el primer error, probamos a corregir a `x == 500`
 
 <div align="left">
-<img src="imagenes/error5.png" width="300">
+<img src="imagenes/error5.png" width="500">
 </div>
 
 

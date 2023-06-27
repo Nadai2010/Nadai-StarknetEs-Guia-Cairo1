@@ -1078,7 +1078,7 @@ Aquí deberemos pasar los argumentos del constructor, en este caso pasamos `name
 
 
 ```bash
-starknet deploy --class_hash 0x0731affa00504b8311180a11585108f15296bf91b024c76a96057959c608d037 --inputs 336641417577 5128521 18 1000000000 0 1795950254530259382270168937734171348535331377400385313842303804539016002736 --account Nadai
+starknet deploy --class_hash 0x0731affa00504b8311180a11585108f15296bf91b024c76a96057959c608d037 --inputs 336641417577 5128521 18 --account Nadai
 ```
 
 Si todo ha ido bien deberá salir la transacción con la diección del contrato que ha desplagado.
